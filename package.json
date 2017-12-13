@@ -38,7 +38,7 @@
     "lint:css": "node src stylelint",
     "check-all": "npm-run-all prettier --parallel lint",
     "eject": "node src eject",
-    "release": "np"
+    "release": "np --no-cleanup"
   },
   "files": [
     "dist",
