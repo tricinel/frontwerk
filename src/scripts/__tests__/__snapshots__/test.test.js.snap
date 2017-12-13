@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`format calls jest CLI with default args 1`] = `"--config {\\"builtInConfig\\":true} --watch"`;
+
+exports[`format does not use built-in config with --config 1`] = `"--watch --config ./custom-config.js"`;
+
+exports[`format does not use built-in config with jest pkg prop 1`] = `"--watch"`;
+
+exports[`format does not watch --updateSnapshot 1`] = `"--config {\\"builtInConfig\\":true} --updateSnapshot"`;
+
+exports[`format does not watch with --coverage 1`] = `"--config {\\"builtInConfig\\":true} --watch --no-coverage"`;
+
+exports[`format does not watch with --no-watch 1`] = `"--config {\\"builtInConfig\\":true} --no-watch"`;
+
+exports[`format forwards args 1`] = `"--config {\\"builtInConfig\\":true} --coverage --watch"`;

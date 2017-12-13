@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`format --no-clean will not clean the outDir 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/config/babelrc.js src --no-clean"`;
+
+exports[`format --no-color will disable colored output 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/config/babelrc.js src --no-color"`;
+
+exports[`format --no-copy-files will not copy the files 1`] = `"babel --out-dir dist --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/config/babelrc.js src --no-copy-files"`;
+
+exports[`format --out-dir will use the specified out dir 1`] = `"babel --copy-files --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/config/babelrc.js src --out-dir ./.tmp/build"`;
+
+exports[`format calls babel CLI with default args 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/config/babelrc.js src"`;
+
+exports[`format does not use built-in config with .babelrc file 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ src"`;
+
+exports[`format does not use built-in config with --presets 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ src --presets ./custom-presets.js"`;
+
+exports[`format does not use built-in config with babel pkg prop 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ src"`;
+
+exports[`format does not use built-in ignore with --ignore 1`] = `"babel --out-dir dist --copy-files --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/config/babelrc.js src --ignore __custom__"`;

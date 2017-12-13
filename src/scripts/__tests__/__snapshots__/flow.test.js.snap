@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`format --no-color will disable colored output 1`] = `"flow check --ignore=<PROJECT_ROOT>/node_modules/.*,<PROJECT_ROOT>/dist/.* --include= --lib= --no-color"`;
+
+exports[`format calls flow CLI with default args 1`] = `"flow check --color=always --ignore=<PROJECT_ROOT>/node_modules/.*,<PROJECT_ROOT>/dist/.* --include= --lib="`;
+
+exports[`format does not use built-in config with .flowconfig file 1`] = `"flow check --color=always"`;

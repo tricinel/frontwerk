@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create the correct message 1`] = `
+"Message title!
+Message body goes here.
+Some other message on another line."
+`;
