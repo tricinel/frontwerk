@@ -68,6 +68,22 @@ frontwerk
 with no arguments to show a list of available commands. Or simply checkout the
 `src/scripts` directory for all the available scripts.
 
+Then simply ammend your `package.json` `scripts` property to include the scripts
+you want to use:
+
+```json
+{
+  "scripts": {
+    "lint:js": "frontwerk lint",
+    "lint:css": "frontwerk stylelint",
+    "test": "frontwerk test --no-watch",
+    "test:watch": "frontwerk test",
+    "build": "frontwerk build",
+    "format": "frontwerk prettier"
+  }
+}
+```
+
 ## Overriding the configuration
 
 Although it works out of the box, **frontwerk** allows you to specify your own
