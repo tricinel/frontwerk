@@ -1,0 +1,5 @@
+# frontwerk 🛠️ builds with RollupJS
+
+_Details coming soon_
+
+[Read the source](https://github.com/tricinel/frontwerk/blob/master/src/scripts/rollup.js)

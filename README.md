@@ -109,9 +109,20 @@ or, simply start with your own config to pass to ESLint:
 }
 ```
 
-> Note that eslintignore is *coincidentally* ignored, so until [this issue](https://github.com/eslint/eslint/issues/9227) is resolved, please pass the eslint ignore as allowed by [eslint's configuration](https://eslint.org/docs/user-guide/configuring).
+> Note that eslintignore is _coincidentally_ ignored, so until
+> [this issue](https://github.com/eslint/eslint/issues/9227) is resolved, please
+> pass the eslint ignore as allowed by
+> [eslint's configuration](https://eslint.org/docs/user-guide/configuring).
 
-**_TODO_**: Document the other tools and how to override those as well.
+## Documentation
+
+You can find more extensive documentation about each tool here:
+
+* [lint:js][docs-lintjs]
+* [lint:css][docs-lintcss]
+* [format][docs-format]
+* [test][docs-test]
+* [build][docs-build]
 
 # LICENSE
 
@@ -133,4 +144,9 @@ MIT
 [kcd-scripts]: https://github.com/kentcdodds/kcd-scripts/
 [twitter-kentcdodds]: https://twitter.com/kentcdodds
 [package]: https://www.npmjs.com/package/kcd-scripts
+[docs-lintjs]: https://github.com/tricinel/frontwerk/blob/master/docs/lintjs.md
+[docs-lintcss]: https://github.com/tricinel/frontwerk/blob/master/docs/lintcss.md
+[docs-test]: https://github.com/tricinel/frontwerk/blob/master/docs/test.md
+[docs-format]: https://github.com/tricinel/frontwerk/blob/master/docs/format.md
+[docs-build]: https://github.com/tricinel/frontwerk/blob/master/docs/build.md
 [license]: https://github.com/tricinel/frontwerk/blob/master/LICENSE
