@@ -109,6 +109,8 @@ or, simply start with your own config to pass to ESLint:
 }
 ```
 
+> Note that eslintignore is *coincidentally* ignored, so until [this issue](https://github.com/eslint/eslint/issues/9227) is resolved, please pass the eslint ignore as allowed by [eslint's configuration](https://eslint.org/docs/user-guide/configuring).
+
 **_TODO_**: Document the other tools and how to override those as well.
 
 # LICENSE
