@@ -1,8 +1,7 @@
 {
   "name": "frontwerk",
-  "version": "1.0.0",
-  "description":
-    "A collection of frontend-friendly scripts for linting, testing and building apps bundled as a CLI",
+  "version": "1.0.1",
+  "description": "A collection of frontend-friendly scripts for linting, testing and building apps bundled as a CLI",
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
