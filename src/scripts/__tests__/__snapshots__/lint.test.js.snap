@@ -10,7 +10,7 @@ exports[`format does not use built-in config with --config 1`] = `"eslint --igno
 
 exports[`format does not use built-in config with eslintConfig pkg prop 1`] = `"eslint --ignore-path ./src/config/eslintignore --cache ."`;
 
-exports[`format does not use built-in config with eslintrc.js file 1`] = `"eslint --ignore-path ./src/config/eslintignore --cache ."`;
+exports[`format does not use built-in config with eslintrc.js file 1`] = `"eslint --config ./src/config/eslintrc.js --ignore-path ./src/config/eslintignore --cache ."`;
 
 exports[`format does not use built-in ignore with .eslintignore file 1`] = `"eslint --config ./src/config/eslintrc.js --cache ."`;
 
