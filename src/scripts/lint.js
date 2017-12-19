@@ -13,7 +13,7 @@ const parsedArgs = yargsParser(args);
 const useBuiltinConfig =
   !args.includes('--config') &&
   !fileExists('.eslintrc') &&
-  !fileExists('eslintrc.js') &&
+  !fileExists('.eslintrc.js') &&
   !hasPkgProp('eslintConfig');
 
 const config = useBuiltinConfig ? ['--config', getConfig('eslintrc.js')] : [];
