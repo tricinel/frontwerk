@@ -3,6 +3,7 @@ const { hasDep } = require('../utils/hasDep');
 const hasReact = hasDep('react');
 const hasJest = hasDep('jest');
 const hasJquery = hasDep('jquery');
+const hasFlow = hasDep('flow');
 
 module.exports = {
   env: {
@@ -35,7 +36,7 @@ module.exports = {
       'error',
       {
         singleQuote: true,
-        parser: 'flow'
+        parser: hasFlow ? 'flow' : 'babylon'
       }
     ],
     'comma-dangle': ['error', 'never'],
