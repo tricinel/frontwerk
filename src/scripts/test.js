@@ -2,6 +2,7 @@ process.env.BABEL_ENV = 'test';
 process.env.NODE_ENV = 'test';
 
 const { hasPkgProp } = require('../utils/pkg');
+const { fileExists } = require('../utils/fileExists');
 const jestConfig = require('../config/jest.config');
 
 const args = process.argv.slice(2);
@@ -14,7 +15,9 @@ const watch =
     : [];
 
 const config =
-  !args.includes('--config') && !hasPkgProp('jest')
+  !args.includes('--config') &&
+  !hasPkgProp('jest') &&
+  !fileExists('jest.config.js')
     ? ['--config', JSON.stringify(jestConfig)]
     : [];
 
