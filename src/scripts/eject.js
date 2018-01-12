@@ -96,11 +96,18 @@ const handleEject = answer => {
   // Run the install
   info('Running npm install...');
 
-  // TODO: Handle install errors
-  spawn.sync('npm', ['install', '--loglevel', 'error'], { stdio: 'inherit' });
+  const install = spawn.sync('npm', ['install', '--loglevel', 'error'], {
+    stdio: 'inherit'
+  });
+  const installError = install.stderr.toString().trim();
 
-  success('Ejected successfully!');
-  info('Please update any paths in your configs.');
+  if (installError) {
+    error('Sorry, there seems to be an error...');
+    throw new Error(installError);
+  } else {
+    success('Ejected successfully!');
+    info('Please update any paths in your configs.');
+  }
 };
 
 inquirer
