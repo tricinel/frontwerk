@@ -1,3 +1,5 @@
+// @skip-file-on-eject
+
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
@@ -25,6 +27,10 @@ const collectFiles = (files, folder) =>
 
 const copyFile = file => {
   const content = fs.readFileSync(file, 'utf8');
+  // Skip flagged files
+  if (content.match(/\/\/ @skip-file-on-eject/)) {
+    return;
+  }
   info(`Adding ${file.replace(ownPath, '')} to your project...`);
   fs.writeFileSync(file.replace(ownPath, `${appDirectory}/`), content);
 };
