@@ -5,7 +5,8 @@ const readPkgUp = require('read-pkg-up');
 const { flip, has } = require('ramda');
 
 const { pkg, path: pkgPath } = readPkgUp.sync({
-  cwd: fs.realpathSync(process.cwd())
+  cwd: fs.realpathSync(process.cwd()),
+  normalize: false
 });
 
 const { pkg: ownPkg, path: ownPkgPath } = readPkgUp.sync({
