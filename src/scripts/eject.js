@@ -85,12 +85,12 @@ const handleEject = answer => {
     ? pkg.dependencies
     : pkg.devDependencies;
 
-  const deps = compose(omit([pkg.name]), merge)(ownDeps, appDeps);
-
-  // TODO: Remove the pkg.name from both dev and deps
+  const devDeps = compose(omit([ownPkg.name]), merge)(ownDeps, appDeps);
+  const deps = omit([ownPkg.name], pkg.dependencies);
 
   // Update the app package.json file
-  pkg.devDependencies = deps;
+  pkg.devDependencies = devDeps;
+  pkg.dependencies = deps;
   fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
 
   // Run the install
