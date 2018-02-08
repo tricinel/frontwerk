@@ -37,8 +37,10 @@
     "prettier": "node src prettier",
     "lint:scripts": "node src lint",
     "lint:css": "node src stylelint",
-    "security-check": "nsp check",
-    "check-all": "npm-run-all prettier --parallel lint:scripts security-check",
+    "security-check:strict": "nsp check",
+    "security-check:medium": "nsp check --threshold=6",
+    "check-all":
+      "npm-run-all format --parallel lint:scripts security-check:medium",
     "eject": "node src eject",
     "release": "np --no-cleanup"
   },
