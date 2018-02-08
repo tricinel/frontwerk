@@ -55,6 +55,7 @@
     "stylelint.js",
     "webpack.js"
   ],
+  "eslintIgnore": ["node_modules", "dist", "coverage", ".tmp"],
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
