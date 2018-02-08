@@ -26,7 +26,8 @@ const testCases = [
   },
   {
     name: 'does not use built-in ignore with --ignore-path',
-    args: ['--ignore-path', './my-ignore']
+    args: ['--ignore-path', './my-ignore'],
+    fnCalled: 1
   },
   {
     name: 'does not use built-in config with --config',
@@ -34,18 +35,21 @@ const testCases = [
   },
   {
     name: 'does not use built-in ignore with .eslintignore file',
-    fileExists: filename => filename === '.eslintignore'
+    fileExists: filename => filename === '.eslintignore',
+    fnCalled: 1
   }
 ];
 
 const testFn = ({
   fileExists = () => false,
   hasPkgProp = () => false,
-  args = []
+  args = [],
+  fnCalled = 0
 }) => {
   const { sync: crossSpawnSyncMock } = require('cross-spawn');
   const originalExit = process.exit;
   const originalArgv = process.argv;
+  const spyLog = jest.spyOn(console, 'log');
   process.exit = jest.fn();
 
   Object.assign(require('../../utils/fileExists'), { fileExists });
@@ -63,10 +67,15 @@ const testFn = ({
 
     require('../lint');
 
-    expect(crossSpawnSyncMock).toHaveBeenCalledTimes(1);
-    const [firstCall] = crossSpawnSyncMock.mock.calls;
-    const [script, calledArgs] = firstCall;
-    expect([script, ...calledArgs].join(' ')).toMatchSnapshot();
+    expect(crossSpawnSyncMock).toHaveBeenCalledTimes(fnCalled);
+
+    if (fnCalled > 0) {
+      const [firstCall] = crossSpawnSyncMock.mock.calls;
+      const [script, calledArgs] = firstCall;
+      expect([script, ...calledArgs].join(' ')).toMatchSnapshot();
+    } else {
+      expect(spyLog).toHaveBeenCalledTimes(2);
+    }
   } catch (error) {
     throw error;
   } finally {
@@ -74,6 +83,7 @@ const testFn = ({
     process.exit = originalExit;
     process.argv = originalArgv;
     jest.resetModules();
+    spyLog.mockReset();
   }
 };
 

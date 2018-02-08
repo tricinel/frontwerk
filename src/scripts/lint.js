@@ -5,6 +5,7 @@ const { hasPkgProp } = require('../utils/pkg');
 const { getConfig } = require('../utils/getConfig');
 const { resolveBin } = require('../utils/resolveBin');
 const { fileExists } = require('../utils/fileExists');
+const { warning, info } = require('../utils/logger');
 
 let args = process.argv.slice(2);
 
@@ -42,10 +43,25 @@ if (filesGiven) {
   );
 }
 
-const result = spawn.sync(
-  resolveBin('eslint'),
-  [...config, ...ignore, ...cache, ...args, ...filesToApply],
-  { stdio: 'inherit' }
-);
+// eslintignore is coincidentally ignored, so until this issue is resolved
+// we need to make sure the user is not accidentally linting his node_modules
+// https://github.com/eslint/eslint/issues/9227
+let result;
+
+if (!useBuiltinIgnore) {
+  result = spawn.sync(
+    resolveBin('eslint'),
+    [...config, ...ignore, ...cache, ...args, ...filesToApply],
+    { stdio: 'inherit' }
+  );
+} else {
+  warning('Please pass an eslintignore!');
+  info(
+    'Currently, eslint has issues with reading relative paths.',
+    'Until it is resolved, please pass your eslintignore!',
+    'See https://github.com/eslint/eslint/issues/9227'
+  );
+  result = { status: 1 };
+}
 
 process.exit(result.status);

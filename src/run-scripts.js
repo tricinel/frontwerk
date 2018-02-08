@@ -20,7 +20,7 @@ const runScript = () => {
 
   if (!scriptPath) {
     throw new Error(
-      `Unknown script ${script}. Please check if you need to update ff-scripts.`
+      `Unknown script ${script}. Please check if you need to update frontwerk.`
     );
   }
 

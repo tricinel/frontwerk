@@ -1,6 +1,6 @@
 {
   "name": "frontwerk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A collection of frontend-friendly scripts for linting, testing and building apps bundled as a CLI",
   "engines": {
     "node": ">= 8",
@@ -33,11 +33,12 @@
     "test:watch": "node src test",
     "test:update": "node src test --updateSnapshot",
     "posttest": "node src build",
-    "prettier": "node src prettier",
+    "format": "node src format",
     "lint:scripts": "node src lint",
     "lint:css": "node src stylelint",
-    "security-check": "nsp check",
-    "check-all": "npm-run-all prettier --parallel lint:scripts security-check",
+    "security-check:strict": "nsp check",
+    "security-check:medium": "nsp check --threshold=6",
+    "check-all": "npm-run-all format --parallel lint:scripts security-check:medium",
     "eject": "node src eject",
     "release": "np --no-cleanup"
   },
@@ -51,6 +52,12 @@
     "rollup.js",
     "stylelint.js",
     "webpack.js"
+  ],
+  "eslintIgnore": [
+    "node_modules",
+    "dist",
+    "coverage",
+    ".tmp"
   ],
   "dependencies": {
     "babel-cli": "^6.26.0",
