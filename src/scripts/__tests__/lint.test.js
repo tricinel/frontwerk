@@ -76,7 +76,6 @@ const testFn = ({
     } else {
       expect(spyLog).toHaveBeenCalledTimes(2);
     }
-
   } catch (error) {
     throw error;
   } finally {
