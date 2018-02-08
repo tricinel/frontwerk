@@ -26,6 +26,12 @@ module.exports = {
     },
     {
       name: 'prettier',
+      desc: 'DEPRECATED: Please use format instead',
+      opts:
+        'You can override the defaults by either passing your --config, defining a .prettierrc/prettier.config.js file or having a prettierrc property in your package.json. All other Prettier flags are supported.'
+    },
+    {
+      name: 'format',
       desc: 'Format your JS files using Prettier',
       opts:
         'You can override the defaults by either passing your --config, defining a .prettierrc/prettier.config.js file or having a prettierrc property in your package.json. All other Prettier flags are supported.'

@@ -34,7 +34,7 @@
     "test:watch": "node src test",
     "test:update": "node src test --updateSnapshot",
     "posttest": "node src build",
-    "prettier": "node src prettier",
+    "format": "node src format",
     "lint:scripts": "node src lint",
     "lint:css": "node src stylelint",
     "security-check:strict": "nsp check",
