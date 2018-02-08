@@ -4,4 +4,4 @@ exports[`format calls node with --bundle 1`] = `"concurrently --names esm,cjs,um
 
 exports[`format calls node with --pack 1`] = `"concurrently --names webpack \\"cross-env BUILD_WEBPACK=true webpack --config ./src/config/webpack.config.js\\""`;
 
-exports[`format calls node with default args 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/config/babelrc.js src"`;
+exports[`format calls node with default args 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/config/babelrc.js src"`;

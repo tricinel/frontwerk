@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`format calls node with the script path and args 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/ff-scripts/src/scripts/test.js --no-watch"`;
+exports[`format calls node with the script path and args 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/test.js --no-watch"`;
 
 exports[`format errors out when using the wrong node version 1`] = `"You must use Node version 8 or greater"`;
 
