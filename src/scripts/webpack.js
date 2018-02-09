@@ -48,11 +48,11 @@ const getWebpackCommand = (env, ...flags) =>
     crossEnv,
     defaultEnv,
     env,
-    webpack,
-    config,
+    environment,
     entry,
     outputPath,
-    environment,
+    webpack,
+    config,
     watch,
     ...flags
   ]
