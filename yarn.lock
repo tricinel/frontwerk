@@ -1518,6 +1518,10 @@ cli-spinners@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-0.1.2.tgz#bb764d88e185fb9e1e6a2a1f19772318f605e31c"
 
+cli-spinners@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-1.1.0.tgz#f1847b168844d917a671eb9d147e3df497c90d06"
+
 cli-table2@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/cli-table2/-/cli-table2-0.2.0.tgz#2d1ef7f218a0e786e214540562d4bd177fe32d97"
@@ -2144,6 +2148,10 @@ detect-libc@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.2.tgz#71ad5d204bf17a6a6ca8f450c61454066ef461e1"
 
+diff-match-patch@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/diff-match-patch/-/diff-match-patch-1.0.0.tgz#1cc3c83a490d67f95d91e39f6ad1f2e086b63048"
+
 diff@^3.2.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
@@ -2705,6 +2713,18 @@ execa@^0.7.0:
 execa@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
+  dependencies:
+    cross-spawn "^5.0.1"
+    get-stream "^3.0.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
+
+execa@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.9.0.tgz#adb7ce62cf985071f60580deb4a88b9e34712d01"
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
@@ -3513,6 +3533,14 @@ https-proxy-agent@^2.1.0:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
+husky@^0.14.3:
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-0.14.3.tgz#c69ed74e2d2779769a17ba8399b54ce0b63c12c3"
+  dependencies:
+    is-ci "^1.0.10"
+    normalize-path "^1.0.0"
+    strip-indent "^2.0.0"
+
 iconv-lite@0.4.19, iconv-lite@^0.4.17, iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -3535,7 +3563,7 @@ ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
-ignore@^3.3.3:
+ignore@^3.3.3, ignore@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
@@ -5056,6 +5084,10 @@ mozjpeg@^4.0.0:
     bin-wrapper "^3.0.0"
     logalot "^2.0.0"
 
+mri@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/mri/-/mri-1.1.0.tgz#5c0a3f29c8ccffbbb1ec941dcec09d71fa32f36a"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -5177,6 +5209,10 @@ normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
     is-builtin-module "^1.0.0"
     semver "2 || 3 || 4 || 5"
     validate-npm-package-license "^3.0.1"
+
+normalize-path@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-1.0.0.tgz#32d0e472f91ff345701c15a8311018d3b0a90379"
 
 normalize-path@^2.0.0, normalize-path@^2.0.1:
   version "2.1.1"
@@ -5378,6 +5414,15 @@ ora@^0.2.3:
     cli-cursor "^1.0.2"
     cli-spinners "^0.1.2"
     object-assign "^4.0.1"
+
+ora@^1.3.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ora/-/ora-1.4.0.tgz#884458215b3a5d4097592285f93321bb7a79e2e5"
+  dependencies:
+    chalk "^2.1.0"
+    cli-cursor "^2.1.0"
+    cli-spinners "^1.0.1"
+    log-symbols "^2.1.0"
 
 ordered-read-streams@^0.3.0:
   version "0.3.0"
@@ -5932,6 +5977,18 @@ postcss@^6.0.1, postcss@^6.0.13, postcss@^6.0.14, postcss@^6.0.3, postcss@^6.0.6
     chalk "^2.3.0"
     source-map "^0.6.1"
     supports-color "^4.4.0"
+
+precise-commits@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/precise-commits/-/precise-commits-1.0.2.tgz#4659be01a9c3310f50ce51ddf913fead1d7cc940"
+  dependencies:
+    diff-match-patch "^1.0.0"
+    execa "^0.9.0"
+    find-up "^2.1.0"
+    glob "^7.1.2"
+    ignore "^3.3.7"
+    mri "^1.1.0"
+    ora "^1.3.0"
 
 prelude-ls@~1.1.2:
   version "1.1.2"
