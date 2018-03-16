@@ -1,11 +1,12 @@
-# frontwerk 🛠️
+# Frontwerk
+
+![Frontwerk](https://i.imgur.com/oLbJD6J.jpg)
 
 CLI toolbox for common scripts for frontend projects that includes:
 
 * JS linting with [ESLint][eslint]
 * JS testing with [Jest][jest]
 * JS formatting with [Prettier][prettier]
-* Check JS for type errors with [Flow][flow]
 * CSS/SCSS linting with [Stylelint][stylelint]
 * Compile your JS with [Babel][babel]
 * Build your JS with [Rollup][rollup]
@@ -15,7 +16,7 @@ Coming soon:
 
 * Easily eject from using frontwerk (similar to [react-scripts][react-scripts]'s
   eject)
-* [Typescript][typescript] support
+* [FlowJS][flow]
 
 <hr />
 
@@ -26,7 +27,7 @@ and processes and then maintain them across all of them is a tideous job.
 
 ## This solution
 
-**frontwerk** is a CLI that abstracts away all those processes and configuration
+Frontwerk is a CLI that abstracts away all those processes and configuration
 and exposes the same API that you can use across all your projects.
 
 You can pick and choose which tools to use (i.e. if you don't want to format
@@ -79,17 +80,17 @@ you want to use:
     "test": "frontwerk test --no-watch",
     "test:watch": "frontwerk test",
     "build": "frontwerk build",
-    "format": "frontwerk prettier"
+    "format": "frontwerk format"
   }
 }
 ```
 
 ## Overriding the configuration
 
-Although it works out of the box, **frontwerk** allows you to specify your own
+Although it works out of the box, Frontwerk allows you to specify your own
 config for the various scripts, either by extending the config provided or just
-by using your own, depending on the script. **frontwerk** respects the
-convention used by each of its underlying tools (eslint, stylelint, flow, etc.).
+by using your own, depending on the script. Frontwerk respects the
+convention used by each of its underlying tools (eslint, stylelint, etc.).
 Basically, if it's possible with that tool, it's possible with frontwerk.
 
 **Example with ESLint**
@@ -116,13 +117,7 @@ or, simply start with your own config to pass to ESLint:
 
 ## Documentation
 
-You can find more extensive documentation about each tool here:
-
-* [lint:js][docs-lintjs]
-* [lint:css][docs-lintcss]
-* [format][docs-format]
-* [test][docs-test]
-* [build][docs-build]
+You can find more extensive documentation about each tool on the [website][frontwerkorg].
 
 # LICENSE
 
@@ -136,6 +131,7 @@ MIT
 [babel]: https://babeljs.io/
 [rollup]: https://rollupjs.org/
 [webpack]: https://webpack.js.org/
+[flow]: https://flow.org/
 [typescript]: http://www.typescriptlang.org/
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/
@@ -144,9 +140,5 @@ MIT
 [kcd-scripts]: https://github.com/kentcdodds/kcd-scripts/
 [twitter-kentcdodds]: https://twitter.com/kentcdodds
 [package]: https://www.npmjs.com/package/kcd-scripts
-[docs-lintjs]: https://github.com/tricinel/frontwerk/blob/master/docs/lintjs.md
-[docs-lintcss]: https://github.com/tricinel/frontwerk/blob/master/docs/lintcss.md
-[docs-test]: https://github.com/tricinel/frontwerk/blob/master/docs/test.md
-[docs-format]: https://github.com/tricinel/frontwerk/blob/master/docs/format.md
-[docs-build]: https://github.com/tricinel/frontwerk/blob/master/docs/build.md
+[frontwerkorg]: https://frontwerk.org
 [license]: https://github.com/tricinel/frontwerk/blob/master/LICENSE
