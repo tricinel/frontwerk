@@ -25,6 +25,10 @@
     "stylelint",
     "test"
   ],
+  "husky": {
+    "pre-commit": "precise-commits",
+    "pre-push": "npm-run-all --parallel test lint:scripts security-check:medium"
+  },
   "scripts": {
     "build": "node src build",
     "bundle:rollup": "node src build --bundle",
