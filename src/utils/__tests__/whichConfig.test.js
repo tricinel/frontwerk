@@ -131,10 +131,12 @@ const useBuiltinConfigTestFn = ({
   try {
     process.argv = ['node', 'whichConfig', ...args];
 
-    const { useBuiltinConfig } = require('../whichConfig');
+    const { useBuiltinConfig, whichConfig } = require('../whichConfig');
+    const msg = 'Using the builtin frontwerk config...';
 
     // tests
     expect(useBuiltinConfig(tool)).toBe(true);
+    expect(whichConfig(tool)).toEqual(msg);
   } catch (error) {
     throw error;
   } finally {
@@ -148,7 +150,6 @@ const useProjectConfigTestFn = ({
   fileExists = () => false,
   hasPkgProp = () => false,
   tool = '',
-  config,
   args = []
 }) => {
   const originalArgv = process.argv;
@@ -159,10 +160,12 @@ const useProjectConfigTestFn = ({
   try {
     process.argv = ['node', 'whichConfig', ...args];
 
-    const { useBuiltinConfig } = require('../whichConfig');
+    const { useBuiltinConfig, whichConfig } = require('../whichConfig');
+    const msg = whichConfig(tool);
 
     // tests
     expect(useBuiltinConfig(tool)).toBe(false);
+    expect(whichConfig(tool)).toEqual(msg);
   } catch (error) {
     throw error;
   } finally {

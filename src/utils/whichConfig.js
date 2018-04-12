@@ -1,5 +1,5 @@
 const yargsParser = require('yargs-parser');
-const { allPass, always, cond, identity, T } = require('ramda');
+const { allPass, always, cond, F, identity, T } = require('ramda');
 
 const { hasPkgProp } = require('./pkg');
 const { fileExists } = require('./fileExists');
@@ -12,7 +12,12 @@ const filesDontExist = tool =>
   tool ? files[tool].map(file => always(!fileExists(file))) : [T];
 
 const filesExistConditions = tool =>
-  files[tool].map(file => [always(fileExists(file)), always(identity(file))]);
+  tool
+    ? files[tool].map(file => [
+        always(fileExists(file)),
+        always(identity(file))
+      ])
+    : [F];
 
 const conditions = tool => {
   const hasNoFiles = allPass(filesDontExist(tool));
@@ -35,11 +40,15 @@ const passedConfig = tool => {
 };
 
 const whichConfig = tool => {
+  const defaultMsg = 'Using the builtin frontwerk config...';
+
+  if (!tool) {
+    return defaultMsg;
+  }
+
   const config = passedConfig(tool);
 
-  return config
-    ? `Using your project's ${config} config...`
-    : 'Using the builtin frontwerk config...';
+  return config ? `Using your project's ${config} config...` : defaultMsg;
 };
 
 module.exports = { useBuiltinConfig, whichConfig };
