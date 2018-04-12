@@ -1,16 +1,15 @@
-const chalk = require('chalk');
+const consola = require('consola');
 
 const { compose, join } = require('ramda');
-
-const { log } = console;
 
 const argsToArray = (...args) => [...args];
 
 const formatMessage = compose(join('\n'), argsToArray);
 
-const success = compose(log, chalk.green, formatMessage);
-const error = compose(log, chalk.red, formatMessage);
-const warning = compose(log, chalk.yellow, formatMessage);
-const info = compose(log, chalk.blue, formatMessage);
+const success = compose(consola.success, formatMessage);
+const error = compose(consola.error, formatMessage);
+const warning = compose(consola.warn, formatMessage);
+const info = compose(consola.info, formatMessage);
+const start = compose(consola.start, formatMessage);
 
-module.exports = { formatMessage, success, error, warning, info };
+module.exports = { formatMessage, success, error, warning, info, start };
