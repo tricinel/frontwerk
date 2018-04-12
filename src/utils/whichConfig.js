@@ -8,9 +8,8 @@ const { files, pkgProps, cliArgs } = require('./checkToolConfig');
 const args = process.argv.slice(2);
 const parsedArgs = yargsParser(args);
 
-const filesDontExist = tool => tool
-  ? files[tool].map(file => always(!fileExists(file)))
-  : [T];
+const filesDontExist = tool =>
+  tool ? files[tool].map(file => always(!fileExists(file))) : [T];
 
 const filesExistConditions = tool =>
   files[tool].map(file => [always(fileExists(file)), always(identity(file))]);

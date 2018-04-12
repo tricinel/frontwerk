@@ -27,8 +27,8 @@ and processes and then maintain them across all of them is a tideous job.
 
 ## This solution
 
-Frontwerk is a CLI that abstracts away all those processes and configuration
-and exposes the same API that you can use across all your projects.
+Frontwerk is a CLI that abstracts away all those processes and configuration and
+exposes the same API that you can use across all your projects.
 
 You can pick and choose which tools to use (i.e. if you don't want to format
 your JS with prettier, you don't have to).
@@ -89,9 +89,9 @@ you want to use:
 
 Although it works out of the box, Frontwerk allows you to specify your own
 config for the various scripts, either by extending the config provided or just
-by using your own, depending on the script. Frontwerk respects the
-convention used by each of its underlying tools (eslint, stylelint, etc.).
-Basically, if it's possible with that tool, it's possible with frontwerk.
+by using your own, depending on the script. Frontwerk respects the convention
+used by each of its underlying tools (eslint, stylelint, etc.). Basically, if
+it's possible with that tool, it's possible with frontwerk.
 
 **Example with ESLint**
 
@@ -117,7 +117,8 @@ or, simply start with your own config to pass to ESLint:
 
 ## Documentation
 
-You can find more extensive documentation about each tool on the [website][frontwerkorg].
+You can find more extensive documentation about each tool on the
+[website][frontwerkorg].
 
 # LICENSE
 

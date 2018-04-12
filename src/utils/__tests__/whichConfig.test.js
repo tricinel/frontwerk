@@ -172,6 +172,14 @@ const useProjectConfigTestFn = ({
   }
 };
 
-cases('whichConfig use built in config', useBuiltinConfigTestFn, useBuiltinConfigTestCases);
+cases(
+  'whichConfig use built in config',
+  useBuiltinConfigTestFn,
+  useBuiltinConfigTestCases
+);
 
-cases('whichConfig use project config', useProjectConfigTestFn, useProjectConfigTestCases);
+cases(
+  'whichConfig use project config',
+  useProjectConfigTestFn,
+  useProjectConfigTestCases
+);

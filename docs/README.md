@@ -1,10 +1,12 @@
 # Documentation
 
-Frontwerk now has a shiny new documentation [website][frontwerk.org] and its own [repo][docs-repo].
+Frontwerk now has a shiny new documentation [website][frontwerk.org] and its own
+[repo][docs-repo].
 
 ![Frontwerk.org](https://i.imgur.com/RBdK0wy.jpg)
 
-If you want to know how to do anything with Frontwerk, I encourage you to go browse the [frontwerk.org][frontwerk.org] website.
+If you want to know how to do anything with Frontwerk, I encourage you to go
+browse the [frontwerk.org][frontwerk.org] website.
 
 Here are some shortcuts to get you started:
 
