@@ -1,8 +1,7 @@
 {
   "name": "frontwerk",
   "version": "1.0.4",
-  "description":
-    "A collection of frontend-friendly scripts for linting, testing and building apps bundled as a CLI",
+  "description": "A collection of frontend-friendly scripts for linting, testing and building apps bundled as a CLI",
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
@@ -43,8 +42,7 @@
     "lint:css": "node src stylelint",
     "security-check:strict": "nsp check",
     "security-check:medium": "nsp check --threshold=6",
-    "check-all":
-      "npm-run-all format --parallel test lint:scripts security-check:medium",
+    "check-all": "npm-run-all format --parallel test lint:scripts security-check:medium",
     "eject": "node src eject",
     "release": "np --no-cleanup"
   },
@@ -59,7 +57,13 @@
     "stylelint.js",
     "webpack.js"
   ],
-  "eslintIgnore": ["node_modules", "dist", "coverage", ".tmp", "build"],
+  "eslintIgnore": [
+    "node_modules",
+    "dist",
+    "coverage",
+    ".tmp",
+    "build"
+  ],
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
@@ -116,7 +120,7 @@
     "yargs-parser": "^8.0.0"
   },
   "devDependencies": {
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.1",
     "jest-in-case": "^1.0.2",
     "np": "^2.18.2",
     "nsp": "^3.1.0",
