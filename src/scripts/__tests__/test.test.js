@@ -65,4 +65,4 @@ const testFn = ({ hasPkgProp = () => false, args = [] }) => {
   }
 };
 
-cases('format', testFn, testCases);
+cases('test', testFn, testCases);

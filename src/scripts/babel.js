@@ -3,20 +3,15 @@ const spawn = require('cross-spawn');
 const rimraf = require('rimraf');
 const yargsParser = require('yargs-parser');
 
-const { hasPkgProp } = require('../utils/pkg');
 const { fromRoot } = require('../utils/fromRoot');
 const { resolveBin } = require('../utils/resolveBin');
-const { fileExists } = require('../utils/fileExists');
+const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
+const { start } = require('../utils/logger');
 
 const args = process.argv.slice(2);
 const parsedArgs = yargsParser(args);
 
-const useBuiltinConfig =
-  !args.includes('--presets') &&
-  !fileExists('.babelrc') &&
-  !hasPkgProp('babel');
-
-const config = useBuiltinConfig
+const config = useBuiltinConfig('babel')
   ? ['--presets', path.join(__dirname, '../config/babelrc.js')]
   : [];
 
@@ -35,6 +30,8 @@ const filesToApply = filesGiven ? [] : ['src'];
 if (!useSpecifiedOutDir && !args.includes('--no-clean')) {
   rimraf.sync(fromRoot('dist'));
 }
+
+start(whichConfig('babel'));
 
 const result = spawn.sync(
   resolveBin('babel-cli', { executable: 'babel' }),

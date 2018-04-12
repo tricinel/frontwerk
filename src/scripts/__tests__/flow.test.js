@@ -52,4 +52,4 @@ const testFn = ({ fileExists = () => false, args = [] }) => {
   }
 };
 
-cases('format', testFn, testCases);
+cases('flow', testFn, testCases);

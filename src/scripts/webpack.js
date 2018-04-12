@@ -6,7 +6,8 @@ const mkdirp = require('mkdirp');
 const { fromRoot } = require('../utils/fromRoot');
 const { getConfig } = require('../utils/getConfig');
 const { resolveBin } = require('../utils/resolveBin');
-const { fileExists } = require('../utils/fileExists');
+const { start } = require('../utils/logger');
+const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
 
 const webpack = resolveBin('webpack');
 const crossEnv = resolveBin('cross-env');
@@ -14,10 +15,7 @@ const crossEnv = resolveBin('cross-env');
 const args = process.argv.slice(2);
 const parsedArgs = yargsParser(args);
 
-const hasConfigOption = args.includes('--config');
-const useBuiltinConfig = !hasConfigOption && !fileExists('webpack.config.js');
-
-const config = useBuiltinConfig
+const config = useBuiltinConfig('webpack')
   ? `--config ${getConfig('webpack.config.js')}`
   : '';
 
@@ -60,6 +58,8 @@ const getWebpackCommand = (env, ...flags) =>
     .join(' ');
 
 const script = ['--names', 'webpack', JSON.stringify(getWebpackCommand())];
+
+start(whichConfig('webpack'));
 
 const result = spawn.sync(resolveBin('concurrently'), script, {
   stdio: 'inherit'

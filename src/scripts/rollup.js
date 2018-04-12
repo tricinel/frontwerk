@@ -5,7 +5,8 @@ const yargsParser = require('yargs-parser');
 const { fromRoot } = require('../utils/fromRoot');
 const { getConfig } = require('../utils/getConfig');
 const { resolveBin } = require('../utils/resolveBin');
-const { fileExists } = require('../utils/fileExists');
+const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
+const { start } = require('../utils/logger');
 
 const rollup = resolveBin('rollup');
 const crossEnv = resolveBin('cross-env');
@@ -15,9 +16,8 @@ const parsedArgs = yargsParser(args);
 
 const hasConfigOption = args.includes('--config');
 const emptyConfigOption = hasConfigOption ? '' : '--config';
-const useBuiltinConfig = !hasConfigOption && !fileExists('rollup.config.js');
 
-const config = useBuiltinConfig
+const config = useBuiltinConfig('rollup')
   ? `--config ${getConfig('rollup.config.js')}`
   : emptyConfigOption;
 
@@ -67,6 +67,8 @@ const scripts = [
   Object.keys(cmds).join(','),
   ...Object.values(cmds).map(s => JSON.stringify(s))
 ].filter(Boolean);
+
+start(whichConfig('rollup'));
 
 const result = spawn.sync(resolveBin('concurrently'), scripts, {
   stdio: 'inherit'

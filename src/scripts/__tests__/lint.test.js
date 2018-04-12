@@ -6,22 +6,26 @@ const cases = require('jest-in-case');
 
 const testCases = [
   {
-    name: 'calls eslint CLI with default args'
+    name: 'calls eslint CLI with default args',
+    fnCalled: 0
   },
   {
     name: '--no-cache will disable caching',
-    args: ['--no-cache']
+    args: ['--no-cache', '--ignore-path', './my-ignore']
   },
   {
     name: 'does not use built-in config with .eslintrc file',
+    args: ['--ignore-path', './my-ignore'],
     fileExists: filename => filename === '.eslintrc'
   },
   {
     name: 'does not use built-in config with eslintrc.js file',
+    args: ['--ignore-path', './my-ignore'],
     fileExists: filename => filename === 'eslintrc.js'
   },
   {
     name: 'does not use built-in config with eslintConfig pkg prop',
+    args: ['--ignore-path', './my-ignore'],
     hasPkgProp: prop => prop === 'eslintConfig'
   },
   {
@@ -31,7 +35,7 @@ const testCases = [
   },
   {
     name: 'does not use built-in config with --config',
-    args: ['--config', './custom-config.js']
+    args: ['--config', './custom-config.js', '--ignore-path', './my-ignore']
   },
   {
     name: 'does not use built-in ignore with .eslintignore file',
@@ -44,12 +48,11 @@ const testFn = ({
   fileExists = () => false,
   hasPkgProp = () => false,
   args = [],
-  fnCalled = 0
+  fnCalled = 1
 }) => {
   const { sync: crossSpawnSyncMock } = require('cross-spawn');
   const originalExit = process.exit;
   const originalArgv = process.argv;
-  const spyLog = jest.spyOn(console, 'log');
   process.exit = jest.fn();
 
   Object.assign(require('../../utils/fileExists'), { fileExists });
@@ -57,8 +60,6 @@ const testFn = ({
   Object.assign(require('../../utils/resolveBin'), {
     resolveBin: (modName, { executable = modName } = {}) => executable
   });
-
-  process.exit = jest.fn();
 
   try {
     // tests
@@ -73,8 +74,6 @@ const testFn = ({
       const [firstCall] = crossSpawnSyncMock.mock.calls;
       const [script, calledArgs] = firstCall;
       expect([script, ...calledArgs].join(' ')).toMatchSnapshot();
-    } else {
-      expect(spyLog).toHaveBeenCalledTimes(2);
     }
   } catch (error) {
     throw error;
@@ -83,8 +82,7 @@ const testFn = ({
     process.exit = originalExit;
     process.argv = originalArgv;
     jest.resetModules();
-    spyLog.mockReset();
   }
 };
 
-cases('format', testFn, testCases);
+cases('lint', testFn, testCases);

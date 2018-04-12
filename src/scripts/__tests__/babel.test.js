@@ -58,8 +58,6 @@ const testFn = ({
     resolveBin: (modName, { executable = modName } = {}) => executable
   });
 
-  process.exit = jest.fn();
-
   try {
     // tests
     process.argv = ['node', '../babel', ...args];
@@ -81,4 +79,4 @@ const testFn = ({
   }
 };
 
-cases('format', testFn, testCases);
+cases('babel', testFn, testCases);

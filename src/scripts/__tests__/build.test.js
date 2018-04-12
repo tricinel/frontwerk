@@ -43,4 +43,4 @@ const testFn = ({ args = [] }) => {
   }
 };
 
-cases('format', testFn, testCases);
+cases('build', testFn, testCases);

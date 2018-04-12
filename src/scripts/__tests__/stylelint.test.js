@@ -81,4 +81,4 @@ const testFn = ({
   }
 };
 
-cases('format', testFn, testCases);
+cases('stylelint', testFn, testCases);

@@ -3,9 +3,8 @@ process.env.NODE_ENV = 'test';
 
 const { execSync } = require('child_process');
 
-const { hasPkgProp } = require('../utils/pkg');
-const { fileExists } = require('../utils/fileExists');
-const { warning, info } = require('../utils/logger');
+const { warning, info, start } = require('../utils/logger');
+const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
 const jestConfig = require('../config/jest.config');
 
 const isGitRepo = () => {
@@ -41,11 +40,10 @@ if (watch.length && !isGitRepo()) {
   );
 }
 
-const config =
-  !args.includes('--config') &&
-  !hasPkgProp('jest') &&
-  !fileExists('jest.config.js')
-    ? ['--config', JSON.stringify(jestConfig)]
-    : [];
+const config = useBuiltinConfig('jest')
+  ? ['--config', JSON.stringify(jestConfig)]
+  : [];
+
+start(whichConfig('jest'));
 
 require('jest').run([...config, ...watch, ...args]);

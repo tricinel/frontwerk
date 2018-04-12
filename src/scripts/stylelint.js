@@ -1,21 +1,16 @@
 const spawn = require('cross-spawn');
 const yargsParser = require('yargs-parser');
 
-const { hasPkgProp } = require('../utils/pkg');
 const { getConfig } = require('../utils/getConfig');
 const { resolveBin } = require('../utils/resolveBin');
 const { fileExists } = require('../utils/fileExists');
+const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
+const { start } = require('../utils/logger');
 
 const args = process.argv.slice(2);
 const parsedArgs = yargsParser(args);
 
-const useBuiltinConfig =
-  !args.includes('--config') &&
-  !fileExists('.stylelintrc') &&
-  !fileExists('stylelint.config.js') &&
-  !hasPkgProp('stylelint');
-
-const config = useBuiltinConfig
+const config = useBuiltinConfig('stylelint')
   ? ['--config', getConfig('stylelint.config.js')]
   : [];
 
@@ -30,6 +25,8 @@ const cache = args.includes('--no-cache') ? [] : ['--cache'];
 const color = args.includes('--no-color') ? [] : ['--color'];
 
 const filesToApply = parsedArgs._.length ? [] : ['**/*.+(css|sass|scss)'];
+
+start(whichConfig('stylelint'));
 
 const result = spawn.sync(
   resolveBin('stylelint'),

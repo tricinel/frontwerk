@@ -5,19 +5,18 @@ const { hasPkgProp } = require('../utils/pkg');
 const { getConfig } = require('../utils/getConfig');
 const { resolveBin } = require('../utils/resolveBin');
 const { fileExists } = require('../utils/fileExists');
-const { warning, info } = require('../utils/logger');
+const { warning, info, start } = require('../utils/logger');
+const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
 
 let args = process.argv.slice(2);
 
 const parsedArgs = yargsParser(args);
 
-const useBuiltinConfig =
-  !args.includes('--config') &&
-  !fileExists('.eslintrc') &&
-  !fileExists('.eslintrc.js') &&
-  !hasPkgProp('eslintConfig');
+warning(useBuiltinConfig('eslint'));
 
-const config = useBuiltinConfig ? ['--config', getConfig('eslintrc.js')] : [];
+const config = useBuiltinConfig('eslint')
+  ? ['--config', getConfig('eslintrc.js')]
+  : [];
 
 const useBuiltinIgnore =
   !args.includes('--ignore-path') &&
@@ -42,6 +41,8 @@ if (filesGiven) {
     a => !parsedArgs._.includes(a) || a.endsWith('.js') || a.endsWith('.jsx')
   );
 }
+
+start(whichConfig('eslint'));
 
 // eslintignore is coincidentally ignored, so until this issue is resolved
 // we need to make sure the user is not accidentally linting his node_modules

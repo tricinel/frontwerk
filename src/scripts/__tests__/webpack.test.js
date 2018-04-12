@@ -73,4 +73,4 @@ const testFn = ({ fileExists = () => false, args = [] }) => {
   }
 };
 
-cases('format', testFn, testCases);
+cases('webpack', testFn, testCases);
