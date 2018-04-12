@@ -12,8 +12,6 @@ let args = process.argv.slice(2);
 
 const parsedArgs = yargsParser(args);
 
-warning(useBuiltinConfig('eslint'));
-
 const config = useBuiltinConfig('eslint')
   ? ['--config', getConfig('eslintrc.js')]
   : [];
