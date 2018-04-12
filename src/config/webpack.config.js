@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 
 const { appDirectory } = require('../utils/appDirectory');
@@ -8,10 +9,13 @@ const plugins = require('./webpack.plugins');
 
 const debug = process.env.NODE_ENV !== 'production';
 const defaultEntryExt = hasDep('react') ? 'jsx' : 'js';
-const defaultEntry = `${appDirectory}/src/index.${defaultEntryExt}`;
-const entry = parseEnv('BUILD_ENTRY', defaultEntry);
+const defaultEntry = `src/index.${defaultEntryExt}`;
+const entry = path.join(appDirectory, parseEnv('BUILD_ENTRY', defaultEntry));
 
-const outputPath = parseEnv('BUILD_OUTPUT_PATH', `${appDirectory}/dist`);
+const outputPath = path.join(
+  appDirectory,
+  parseEnv('BUILD_OUTPUT_PATH', 'dist')
+);
 
 const config = {
   devtool: debug ? 'eval-source-map' : '',
@@ -38,22 +42,22 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
+        use: require.resolve('babel-loader'),
         exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [require.resolve('style-loader'), require.resolve('css-loader')]
       },
       {
         test: /\.(woff2?|eot|ttf|svg)$/,
-        loader: 'url-loader'
+        use: require.resolve('url-loader')
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
         loaders: [
           {
-            loader: 'file-loader',
+            loader: require.resolve('file-loader'),
             options: {
               hash: 'sha512',
               digest: 'hex',
@@ -61,7 +65,7 @@ const config = {
             }
           },
           {
-            loader: 'image-webpack-loader',
+            loader: require.resolve('image-webpack-loader'),
             options: {
               gifsicle: {
                 interlaced: false
