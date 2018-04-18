@@ -2,6 +2,10 @@
 
 ![Frontwerk](https://i.imgur.com/oLbJD6J.jpg)
 
+![Build status][build-status-badge] ![Node Version][node-version-badge]
+![Npm version][npm-version-badge]
+[![Npm downloads][npm-downloads-badge]][frontwerk-npm] ![License][license-badge]
+
 CLI toolbox for common scripts for frontend projects that includes:
 
 * JS linting with [ESLint][eslint]
@@ -143,3 +147,9 @@ MIT
 [package]: https://www.npmjs.com/package/kcd-scripts
 [frontwerkorg]: https://frontwerk.org
 [license]: https://github.com/tricinel/frontwerk/blob/master/LICENSE
+[node-version-badge]: https://img.shields.io/node/v/frontwerk.svg?style=flat-square
+[license-badge]: https://img.shields.io/npm/l/frontwerk.svg?style=flat-square
+[npm-version-badge]: https://img.shields.io/npm/v/frontwerk.svg?style=flat-square
+[frontwerk-npm]: https://www.npmjs.com/package/frontwerk
+[npm-downloads-badge]: https://img.shields.io/npm/dt/frontwerk.svg?style=flat-square
+[build-status-badge]: https://img.shields.io/travis/tricinel/frontwerk.svg?style=flat-square

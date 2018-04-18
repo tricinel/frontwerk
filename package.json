@@ -38,6 +38,7 @@
     "test": "node src test --no-watch",
     "test:watch": "node src test",
     "test:update": "node src test --updateSnapshot",
+    "test:ci": "node src test --silent --updateSnapshot",
     "posttest": "node src build",
     "format": "node src format",
     "lint:scripts": "node src lint",
@@ -124,9 +125,11 @@
   "devDependencies": {
     "husky": "^1.0.0-rc.1",
     "jest-in-case": "^1.0.2",
+    "jest-serializer-path": "^0.1.13",
     "np": "^2.18.2",
     "nsp": "^3.1.0",
     "precise-commits": "^1.0.2",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "slash": "^2.0.0"
   }
 }

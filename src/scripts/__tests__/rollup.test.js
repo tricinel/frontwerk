@@ -1,9 +1,19 @@
 /* eslint-disable global-require */
+import {
+  unquoteSerializer,
+  winPathSerializer
+} from '../../helpers/serializers';
+
 jest.mock('cross-spawn');
 jest.mock('concurrently');
 jest.mock('jest');
 
 const cases = require('jest-in-case');
+const jestSerializerPath = require('jest-serializer-path');
+
+expect.addSnapshotSerializer(unquoteSerializer);
+expect.addSnapshotSerializer(winPathSerializer);
+expect.addSnapshotSerializer(jestSerializerPath);
 
 const testCases = [
   {
