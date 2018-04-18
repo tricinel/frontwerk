@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`stylelint --no-cache will disable caching 1`] = `"stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --color --no-cache"`;
+exports[`stylelint --no-cache will disable caching 1`] = `stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --color --no-cache`;
 
-exports[`stylelint --no-color will disable colored output 1`] = `"stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --cache --no-color"`;
+exports[`stylelint --no-color will disable colored output 1`] = `stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --cache --no-color`;
 
-exports[`stylelint calls prettier CLI with args 1`] = `"stylelint --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --cache --color my-src/**/*.css"`;
+exports[`stylelint calls prettier CLI with args 1`] = `stylelint --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --cache --color my-src/**/*.css`;
 
-exports[`stylelint calls prettier CLI with default args 1`] = `"stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --cache --color"`;
+exports[`stylelint calls prettier CLI with default args 1`] = `stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --ignore-path ./src/config/stylelintignore --cache --color`;
 
-exports[`stylelint does not use built-in config with .stylelintrc file 1`] = `"stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color"`;
+exports[`stylelint does not use built-in config with .stylelintrc file 1`] = `stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color`;
 
-exports[`stylelint does not use built-in config with --config 1`] = `"stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color --config ./custom-config.js"`;
+exports[`stylelint does not use built-in config with --config 1`] = `stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color --config ./custom-config.js`;
 
-exports[`stylelint does not use built-in config with stylelint pkg prop 1`] = `"stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color"`;
+exports[`stylelint does not use built-in config with stylelint pkg prop 1`] = `stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color`;
 
-exports[`stylelint does not use built-in config with stylelint.config.js file 1`] = `"stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color"`;
+exports[`stylelint does not use built-in config with stylelint.config.js file 1`] = `stylelint **/*.+(css|sass|scss) --ignore-path ./src/config/stylelintignore --cache --color`;
 
-exports[`stylelint does not use built-in ignore with --ignore-path 1`] = `"stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --cache --color --ignore-path ./my-ignore"`;
+exports[`stylelint does not use built-in ignore with --ignore-path 1`] = `stylelint **/*.+(css|sass|scss) --config ./src/config/stylelint.config.js --cache --color --ignore-path ./my-ignore`;

@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test calls jest CLI with default args 1`] = `"--config {\\"builtInConfig\\":true} --watch"`;
+exports[`test calls jest CLI with default args 1`] = `--config {"builtInConfig":true} --watch`;
 
-exports[`test does not use built-in config with --config 1`] = `"--watch --config ./custom-config.js"`;
+exports[`test does not use built-in config with --config 1`] = `--watch --config ./custom-config.js`;
 
-exports[`test does not use built-in config with jest pkg prop 1`] = `"--watch"`;
+exports[`test does not use built-in config with jest pkg prop 1`] = `--watch`;
 
-exports[`test does not watch --updateSnapshot 1`] = `"--config {\\"builtInConfig\\":true} --updateSnapshot"`;
+exports[`test does not watch --updateSnapshot 1`] = `--config {"builtInConfig":true} --updateSnapshot`;
 
-exports[`test does not watch with --coverage 1`] = `"--config {\\"builtInConfig\\":true} --watch --no-coverage"`;
+exports[`test does not watch with --coverage 1`] = `--config {"builtInConfig":true} --watch --no-coverage`;
 
-exports[`test does not watch with --no-watch 1`] = `"--config {\\"builtInConfig\\":true} --no-watch"`;
+exports[`test does not watch with --no-watch 1`] = `--config {"builtInConfig":true} --no-watch`;
 
-exports[`test forwards args 1`] = `"--config {\\"builtInConfig\\":true} --coverage --watch"`;
+exports[`test forwards args 1`] = `--config {"builtInConfig":true} --coverage --watch`;

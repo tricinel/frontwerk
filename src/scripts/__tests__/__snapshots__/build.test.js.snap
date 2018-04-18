@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`build calls node with --bundle 1`] = `"concurrently --names esm,cjs,umd,umd.min \\"cross-env BUILD_ROLLUP=true BUILD_FORMAT=esm BUILD_MINIFY=false NODE_ENV=development  rollup --config ./src/config/rollup.config.js\\" \\"cross-env BUILD_ROLLUP=true BUILD_FORMAT=cjs BUILD_MINIFY=false NODE_ENV=development  rollup --config ./src/config/rollup.config.js\\" \\"cross-env BUILD_ROLLUP=true BUILD_FORMAT=umd BUILD_MINIFY=false NODE_ENV=development  rollup --config ./src/config/rollup.config.js --sourcemap\\" \\"cross-env BUILD_ROLLUP=true BUILD_FORMAT=umd BUILD_MINIFY=true NODE_ENV=production  rollup --config ./src/config/rollup.config.js --sourcemap\\""`;
+exports[`build calls node with --bundle 1`] = `concurrently --names esm,cjs,umd,umd.min "cross-env BUILD_ROLLUP=true BUILD_FORMAT=esm BUILD_MINIFY=false NODE_ENV=development  rollup --config ./src/config/rollup.config.js" "cross-env BUILD_ROLLUP=true BUILD_FORMAT=cjs BUILD_MINIFY=false NODE_ENV=development  rollup --config ./src/config/rollup.config.js" "cross-env BUILD_ROLLUP=true BUILD_FORMAT=umd BUILD_MINIFY=false NODE_ENV=development  rollup --config ./src/config/rollup.config.js --sourcemap" "cross-env BUILD_ROLLUP=true BUILD_FORMAT=umd BUILD_MINIFY=true NODE_ENV=production  rollup --config ./src/config/rollup.config.js --sourcemap"`;
 
-exports[`build calls node with --pack 1`] = `"concurrently --names webpack \\"cross-env BUILD_WEBPACK=true webpack --config ./src/config/webpack.config.js\\""`;
+exports[`build calls node with --pack 1`] = `concurrently --names webpack "cross-env BUILD_WEBPACK=true webpack --config ./src/config/webpack.config.js"`;
 
-exports[`build calls node with default args 1`] = `"babel --out-dir dist --copy-files --ignore __tests__,__mocks__ --presets /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/config/babelrc.js src"`;
+exports[`build calls node with default args 1`] = `babel --out-dir dist --copy-files --ignore __tests__,__mocks__ --presets <PROJECT_ROOT>/src/config/babelrc.js src`;

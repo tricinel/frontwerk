@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`format --no-write prevents --write argument from being added 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js --no-write"`;
+exports[`format --no-write prevents --write argument from being added 1`] = `prettier --config ./src/config/prettierrc.js --ignore-path ./src/config/prettierignore **/*.+(js|json|less|css|ts|md)`;
 
-exports[`format calls prettier CLI with args 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js my-src/**/*.js"`;
+exports[`format calls prettier CLI with args 1`] = `prettier --config ./src/config/prettierrc.js --ignore-path ./src/config/prettierignore --write`;
 
-exports[`format calls prettier CLI with default args 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js"`;
+exports[`format calls prettier CLI with default args 1`] = `prettier --config ./src/config/prettierrc.js --ignore-path ./src/config/prettierignore --write **/*.+(js|json|less|css|ts|md)`;
 
-exports[`format does not use built-in config with .prettierrc file 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js"`;
+exports[`format does not use built-in config with .prettierrc file 1`] = `prettier --ignore-path ./src/config/prettierignore --write **/*.+(js|json|less|css|ts|md)`;
 
-exports[`format does not use built-in config with --config 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js --config ./custom-config.js"`;
+exports[`format does not use built-in config with --config 1`] = `prettier --ignore-path ./src/config/prettierignore --write **/*.+(js|json|less|css|ts|md)`;
 
-exports[`format does not use built-in config with prettier.config.js file 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js"`;
+exports[`format does not use built-in config with prettier.config.js file 1`] = `prettier --ignore-path ./src/config/prettierignore --write **/*.+(js|json|less|css|ts|md)`;
 
-exports[`format does not use built-in config with prettierrc pkg prop 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js"`;
+exports[`format does not use built-in config with prettierrc pkg prop 1`] = `prettier --ignore-path ./src/config/prettierignore --write **/*.+(js|json|less|css|ts|md)`;
 
-exports[`format does not use built-in ignore with --ignore-path 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/format.js --ignore-path ./my-ignore"`;
+exports[`format does not use built-in ignore with --ignore-path 1`] = `prettier --config ./src/config/prettierrc.js --write **/*.+(js|json|less|css|ts|md)`;

@@ -1,8 +1,18 @@
 /* eslint-disable global-require */
+import {
+  unquoteSerializer,
+  winPathSerializer
+} from '../../helpers/serializers';
+
 jest.mock('cross-spawn');
 jest.mock('jest');
 
 const cases = require('jest-in-case');
+const jestSerializerPath = require('jest-serializer-path');
+
+expect.addSnapshotSerializer(unquoteSerializer);
+expect.addSnapshotSerializer(winPathSerializer);
+expect.addSnapshotSerializer(jestSerializerPath);
 
 const testCases = [
   {
@@ -58,10 +68,10 @@ const testFn = ({
 
   try {
     // tests
-    process.argv = ['node', '../prettier', ...args];
+    process.argv = ['node', '../format', ...args];
     crossSpawnSyncMock.mockClear();
 
-    require('../prettier');
+    require('../format');
 
     expect(crossSpawnSyncMock).toHaveBeenCalledTimes(1);
     const [firstCall] = crossSpawnSyncMock.mock.calls;
