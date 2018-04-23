@@ -12,4 +12,3 @@ script: yarn run test:ci
 branches:
   only:
     - master
-    - develop
