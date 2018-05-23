@@ -52,6 +52,7 @@ module.exports = {
       {
         allowForLoopAfterthoughts: true
       }
-    ]
+    ],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
   }
 };
