@@ -1,9 +1,9 @@
 const { hasDep } = require('../utils/hasDep');
+const rules = require('./eslint-rules');
 
 const hasReact = hasDep('react');
 const hasJest = hasDep('jest');
 const hasJquery = hasDep('jquery');
-const hasFlow = hasDep('flow');
 
 module.exports = {
   env: {
@@ -17,42 +17,15 @@ module.exports = {
     hasReact
       ? require.resolve('eslint-config-airbnb')
       : require.resolve('eslint-config-airbnb-base'),
-    require.resolve('eslint-config-prettier')
+    require.resolve('eslint-config-prettier'),
+    hasJest ? 'plugin:jest/recommended' : null
   ].filter(Boolean),
   plugins: [
     'prettier',
+    hasJest ? 'jest' : false,
     hasReact ? 'import' : false,
     hasReact ? 'react' : false,
     hasReact ? 'jsx-a11y' : false
   ].filter(Boolean),
-  rules: {
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: true
-      }
-    ],
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        parser: hasFlow ? 'flow' : 'babylon'
-      }
-    ],
-    'comma-dangle': ['error', 'never'],
-    'no-console': 0,
-    'no-param-reassign': [
-      'error',
-      {
-        props: false
-      }
-    ],
-    'no-plusplus': [
-      'error',
-      {
-        allowForLoopAfterthoughts: true
-      }
-    ],
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
-  }
+  ...rules
 };
