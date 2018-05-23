@@ -45,7 +45,7 @@ const testCases = [
 ];
 
 const testFn = ({ hasPkgProp = () => false, args = [] }) => {
-  const { run: jestRunMock } = require('jest');
+  const { run: jestRunMock } = require('jest'); // eslint-disable-line jest/no-jest-import
   const originalExit = process.exit;
   const originalArgv = process.argv;
   process.exit = jest.fn();

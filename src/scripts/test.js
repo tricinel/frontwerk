@@ -46,4 +46,4 @@ const config = useBuiltinConfig('jest')
 
 start(whichConfig('jest'));
 
-require('jest').run([...config, ...watch, ...args]);
+require('jest').run([...config, ...watch, ...args]); // eslint-disable-line jest/no-jest-import
