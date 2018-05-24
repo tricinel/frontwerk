@@ -1,93 +1,136 @@
 const path = require('path');
-const webpack = require('webpack');
+const merge = require('webpack-merge');
 
 const { appDirectory } = require('../utils/appDirectory');
 const { hasDep } = require('../utils/hasDep');
 const { parseEnv } = require('../utils/parseEnv');
+const { fileExists } = require('../utils/fileExists');
+const { start } = require('../utils/logger');
+const {
+  caseSensitivePaths,
+  cleanup,
+  generateHTML,
+  ignoreErrors,
+  ignorePlugin,
+  loadCSS,
+  loadImages,
+  loadJavaScript,
+  minifyCSS,
+  minifyJavaScript,
+  setCompression,
+  splitChunks
+} = require('./webpack.utils');
 
-const plugins = require('./webpack.plugins');
-
-const debug = process.env.NODE_ENV !== 'production';
 const defaultEntryExt = hasDep('react') ? 'jsx' : 'js';
 const defaultEntry = `src/index.${defaultEntryExt}`;
-const entry = path.join(appDirectory, parseEnv('BUILD_ENTRY', defaultEntry));
 
 const outputPath = path.join(
   appDirectory,
   parseEnv('BUILD_OUTPUT_PATH', 'dist')
 );
 
-const config = {
-  devtool: debug ? 'eval-source-map' : '',
-  entry,
-  output: {
-    filename: '[name].[hash].js',
-    path: outputPath
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
-  plugins: [
-    ...plugins,
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: module =>
-        module.context && module.context.indexOf('node_modules') !== -1
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest'
-    })
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        use: require.resolve('babel-loader'),
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: [require.resolve('style-loader'), require.resolve('css-loader')]
-      },
-      {
-        test: /\.(woff2?|eot|ttf|svg)$/,
-        use: require.resolve('url-loader')
-      },
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        loaders: [
-          {
-            loader: require.resolve('file-loader'),
-            options: {
-              hash: 'sha512',
-              digest: 'hex',
-              name: '[name]-[hash].[ext]'
-            }
-          },
-          {
-            loader: require.resolve('image-webpack-loader'),
-            options: {
-              gifsicle: {
-                interlaced: false
-              },
-              optipng: {
-                optimizationLevel: 7
-              },
-              pngquant: {
-                quality: '65-90',
-                speed: 4
-              },
-              mozjpeg: {
-                progressive: true,
-                quality: 65
-              }
-            }
-          }
-        ],
-        exclude: /node_modules/
-      }
-    ]
-  }
-};
+const cliMode = parseEnv('WEBPACK_MODE', 'development');
+const skipClean = parseEnv('WEBPACK_NO_CLEAN', false);
 
-module.exports = config;
+const indexHtmlTemplate = 'src/index.html';
+const indexHtmlTemplateExists = fileExists(indexHtmlTemplate);
+
+const common = merge([
+  {
+    entry: {
+      application: path.join(
+        appDirectory,
+        parseEnv('BUILD_ENTRY', defaultEntry)
+      )
+    }
+  },
+  splitChunks(),
+  caseSensitivePaths(),
+  ignorePlugin(/^\.\/locale$/, /moment$/)
+]);
+
+const production = merge([
+  {
+    mode: 'production',
+    devtool: false,
+    bail: false,
+    output: {
+      filename: '[name].js',
+      path: outputPath,
+      pathinfo: true,
+      publicPath: '/'
+    }
+  },
+  ignoreErrors(),
+  loadJavaScript({ exclude: /node_modules/ }),
+  minifyJavaScript({ sourceMap: false }),
+  skipClean ? {} : cleanup(outputPath),
+  minifyCSS({
+    options: {
+      discardComments: { removeAll: true }
+    },
+    safe: true
+  }),
+  loadCSS({ env: 'production' }),
+  loadImages({
+    options: {
+      limit: 1024,
+      name: '[name].[ext]'
+    }
+  }),
+  setCompression(),
+  indexHtmlTemplateExists
+    ? generateHTML({
+        template: indexHtmlTemplate,
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true
+        }
+      })
+    : {}
+]);
+
+const development = merge([
+  {
+    mode: 'development',
+    devtool: 'source-map',
+    bail: true,
+    watch: true,
+    output: {
+      filename: '[name].js',
+      chunkFilename: '[id].js',
+      path: outputPath,
+      pathinfo: true,
+      publicPath: '/'
+    }
+  },
+  loadJavaScript({ exclude: /node_modules/ }),
+  loadCSS({
+    options: {
+      sourceMap: true,
+      minimize: true
+    },
+    env: 'development'
+  }),
+  loadImages(),
+  indexHtmlTemplateExists
+    ? generateHTML({
+        template: indexHtmlTemplate,
+        minify: {}
+      })
+    : {}
+]);
+
+module.exports = (mode = cliMode) => {
+  start(`============= Running webpack in ${mode} mode =============`);
+  const config = mode === 'production' ? production : development;
+  return merge(common, config, { mode });
+};
