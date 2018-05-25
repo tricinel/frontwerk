@@ -24,12 +24,16 @@ const testCases = [
     args: ['--no-clean']
   },
   {
-    name: 'watches with --watch',
-    args: ['--watch']
-  },
-  {
     name: '--env will pass the environment',
     args: ['--env', 'production']
+  },
+  {
+    name: '--mode will pass the development mode',
+    args: ['--mode', 'development']
+  },
+  {
+    name: '--mode will pass the production mode',
+    args: ['--mode', 'production']
   },
   {
     name: '--entry will pass the entry folder',

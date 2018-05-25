@@ -6,6 +6,7 @@ import {
 
 jest.mock('cross-spawn');
 jest.mock('jest');
+jest.mock('rimraf');
 
 const cases = require('jest-in-case');
 const jestSerializerPath = require('jest-serializer-path');
