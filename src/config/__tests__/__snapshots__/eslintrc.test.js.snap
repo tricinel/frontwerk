@@ -13,7 +13,7 @@ Object {
     <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
     plugin:jest/recommended,
   ],
-  parser: <PROJECT_ROOT>/node_modules/babel-eslint/index.js,
+  parser: <PROJECT_ROOT>/node_modules/babel-eslint/lib/index.js,
   plugins: Array [
     prettier,
     jest,
@@ -72,7 +72,7 @@ Object {
     <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
     plugin:jest/recommended,
   ],
-  parser: <PROJECT_ROOT>/node_modules/babel-eslint/index.js,
+  parser: <PROJECT_ROOT>/node_modules/babel-eslint/lib/index.js,
   plugins: Array [
     prettier,
     jest,
@@ -130,7 +130,7 @@ Object {
     <PROJECT_ROOT>/node_modules/eslint-config-airbnb/index.js,
     <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
   ],
-  parser: <PROJECT_ROOT>/node_modules/babel-eslint/index.js,
+  parser: <PROJECT_ROOT>/node_modules/babel-eslint/lib/index.js,
   plugins: Array [
     prettier,
     import,

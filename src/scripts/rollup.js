@@ -47,9 +47,7 @@ const getCommands = (env = '') =>
     const sourceMap = formatName === 'umd' ? '--sourcemap' : '';
     const buildMinify = Boolean(minify);
     cmds[format] = getCommand(
-      `BUILD_FORMAT=${formatName} BUILD_MINIFY=${buildMinify} NODE_ENV=${
-        nodeEnv
-      } ${env}`,
+      `BUILD_FORMAT=${formatName} BUILD_MINIFY=${buildMinify} NODE_ENV=${nodeEnv} ${env}`,
       sourceMap
     );
     return cmds;

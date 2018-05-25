@@ -41,7 +41,7 @@ Object {
         include: undefined,
         test: /\\\\\\.\\(png\\|jpg\\|jpeg\\|gif\\|eot\\|ttf\\|woff2\\)\\$/,
         use: Object {
-          loader: <PROJECT_ROOT>/node_modules/url-loader/index.js,
+          loader: <PROJECT_ROOT>/node_modules/url-loader/dist/cjs.js,
           options: Object {
             limit: 1024,
             name: [name].[ext],
@@ -112,7 +112,7 @@ Object {
       options: Object {
         allowExternal: false,
         dry: false,
-        root: .,
+        root: <PROJECT_ROOT>/src/config,
         verbose: false,
       },
       paths: Array [
