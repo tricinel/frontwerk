@@ -14,7 +14,7 @@ build --bundle: Build your ES6 files into a single file using RollupJS
 build: Build your ES6 files using BabelJS
 lint: Lint your JS files using ESLint
 stylelint: Lint your CSS/SCSS/SASS files using Stylelint
-prettier: DEPRECATED: Please use format instead
+prettier: REMOVED: Please use format instead
 format: Format your JS files using Prettier
 test: Test your JS files using Jest
 flow: Run your files through the flow static type checker
