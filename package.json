@@ -140,6 +140,7 @@
     "yargs-parser": "^10.0.0"
   },
   "devDependencies": {
+    "danger": "^3.7.15",
     "jest-in-case": "^1.0.2",
     "jest-serializer-path": "^0.1.15",
     "np": "^2.20.1",
