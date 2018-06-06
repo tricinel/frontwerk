@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gets the webpack config for production 1`] = `
+Object {
+  bail: false,
+  devtool: false,
+  entry: Object {
+    application: <PROJECT_ROOT>/src/index.js,
+  },
+  mode: production,
+  module: Object {
+    rules: Array [
+      Object {
+        exclude: /node_modules/,
+        test: /\\\\\\.\\(js\\|jsx\\)\\$/,
+        use: <PROJECT_ROOT>/node_modules/babel-loader/lib/index.js,
+      },
+      Object {
+        exclude: undefined,
+        test: /\\\\\\.css\\$/,
+        use: Array [
+          <PROJECT_ROOT>/node_modules/style-loader/index.js,
+          Object {
+            loader: <PROJECT_ROOT>/node_modules/css-loader/index.js,
+            options: Object {
+              minimize: true,
+            },
+          },
+          Object {
+            loader: <PROJECT_ROOT>/node_modules/postcss-loader/lib/index.js,
+            options: Object {
+              ident: postcss,
+              plugins: [Function],
+            },
+          },
+          <PROJECT_ROOT>/node_modules/mini-css-extract-plugin/dist/loader.js,
+        ],
+      },
+      Object {
+        exclude: undefined,
+        include: undefined,
+        test: /\\\\\\.\\(png\\|jpg\\|jpeg\\|gif\\|eot\\|ttf\\|woff2\\)\\$/,
+        use: Object {
+          loader: <PROJECT_ROOT>/node_modules/url-loader/dist/cjs.js,
+          options: Object {
+            limit: 1024,
+            name: [name].[ext],
+          },
+        },
+      },
+    ],
+  },
+  optimization: Object {
+    minimizer: Array [
+      UglifyJsPlugin {
+        options: Object {
+          cache: true,
+          exclude: undefined,
+          extractComments: false,
+          include: undefined,
+          parallel: true,
+          sourceMap: false,
+          test: /\\\\\\.js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+          uglifyOptions: Object {
+            compress: Object {
+              comparisons: false,
+              ecma: 5,
+              warnings: false,
+            },
+            mangle: Object {
+              safari10: true,
+            },
+            output: Object {
+              ascii_only: true,
+              comments: false,
+              ecma: 5,
+            },
+            parse: Object {
+              ecma: 8,
+            },
+          },
+          warningsFilter: [Function],
+        },
+        sourceMapsCache: WeakMap {},
+      },
+    ],
+    runtimeChunk: true,
+    splitChunks: Object {
+      chunks: all,
+      name: undefined,
+    },
+  },
+  output: Object {
+    filename: [name].js,
+    path: <PROJECT_ROOT>/dist,
+    pathinfo: true,
+    publicPath: /,
+  },
+  plugins: Array [
+    CaseSensitivePathsPlugin {
+      fsOperations: 0,
+      options: Object {},
+      pathCache: Object {},
+      primed: false,
+    },
+    IgnorePlugin {
+      checkIgnore: [Function],
+      contextRegExp: undefined,
+      resourceRegExp: /\\^\\\\\\.\\\\/locale\\$/,
+    },
+    CleanWebpackPlugin {
+      options: Object {
+        allowExternal: false,
+        dry: false,
+        root: <PROJECT_ROOT>/src/config,
+        verbose: false,
+      },
+      paths: Array [
+        <PROJECT_ROOT>/dist,
+      ],
+    },
+    OptimizeCssAssetsWebpackPlugin {
+      deleteAssetsMap: Object {},
+      options: Object {
+        assetNameRegExp: /\\\\\\.css\\$/g,
+        assetProcessors: Array [
+          Object {
+            phase: compilation.optimize-chunk-assets,
+            processor: [Function],
+            regExp: /\\\\\\.css\\$/g,
+          },
+        ],
+        canPrint: false,
+        cssProcessor: [Function],
+        cssProcessorOptions: Object {
+          discardComments: Object {
+            removeAll: true,
+          },
+        },
+      },
+      phaseAssetProcessors: Object {
+        compilation.optimize-assets: Array [],
+        compilation.optimize-chunk-assets: Array [
+          Object {
+            phase: compilation.optimize-chunk-assets,
+            processor: [Function],
+            regExp: /\\\\\\.css\\$/g,
+          },
+        ],
+        emit: Array [],
+      },
+      pluginDescriptor: Object {
+        name: OptimizeCssAssetsWebpackPlugin,
+      },
+    },
+    MiniCssExtractPlugin {
+      options: Object {
+        chunkFilename: [id].css,
+        filename: [name].css,
+      },
+    },
+    CompressionPlugin {
+      options: Object {
+        algorithm: [Function],
+        asset: [path].gz[query],
+        cache: false,
+        compressionOptions: Object {
+          chunkSize: undefined,
+          dictionary: undefined,
+          flush: undefined,
+          level: 9,
+          memLevel: undefined,
+          strategy: undefined,
+          windowBits: undefined,
+        },
+        deleteOriginalAssets: false,
+        exclude: undefined,
+        filename: false,
+        include: undefined,
+        minRatio: 0.8,
+        test: undefined,
+        threshold: 0,
+      },
+    },
+  ],
+}
+`;

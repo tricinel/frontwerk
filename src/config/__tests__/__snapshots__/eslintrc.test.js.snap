@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gets the eslint config when there are Jest and jQuery as project dependencies 1`] = `
+Object {
+  env: Object {
+    browser: true,
+    jest: true,
+    jquery: true,
+    node: true,
+  },
+  extends: Array [
+    <PROJECT_ROOT>/node_modules/eslint-config-airbnb-base/index.js,
+    <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+    plugin:jest/recommended,
+  ],
+  parser: <PROJECT_ROOT>/node_modules/babel-eslint/lib/index.js,
+  plugins: Array [
+    prettier,
+    jest,
+  ],
+  rules: Object {
+    comma-dangle: Array [
+      error,
+      never,
+    ],
+    import/no-extraneous-dependencies: Array [
+      error,
+      Object {
+        devDependencies: true,
+      },
+    ],
+    no-console: 0,
+    no-param-reassign: Array [
+      error,
+      Object {
+        props: false,
+      },
+    ],
+    no-plusplus: Array [
+      error,
+      Object {
+        allowForLoopAfterthoughts: true,
+      },
+    ],
+    no-unused-vars: Array [
+      error,
+      Object {
+        argsIgnorePattern: ^_,
+      },
+    ],
+    prettier/prettier: Array [
+      error,
+      Object {
+        parser: babylon,
+        singleQuote: true,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Gets the eslint config when there is Jest as a project dependency 1`] = `
+Object {
+  env: Object {
+    browser: true,
+    jest: true,
+    jquery: false,
+    node: true,
+  },
+  extends: Array [
+    <PROJECT_ROOT>/node_modules/eslint-config-airbnb-base/index.js,
+    <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+    plugin:jest/recommended,
+  ],
+  parser: <PROJECT_ROOT>/node_modules/babel-eslint/lib/index.js,
+  plugins: Array [
+    prettier,
+    jest,
+  ],
+  rules: Object {
+    comma-dangle: Array [
+      error,
+      never,
+    ],
+    import/no-extraneous-dependencies: Array [
+      error,
+      Object {
+        devDependencies: true,
+      },
+    ],
+    no-console: 0,
+    no-param-reassign: Array [
+      error,
+      Object {
+        props: false,
+      },
+    ],
+    no-plusplus: Array [
+      error,
+      Object {
+        allowForLoopAfterthoughts: true,
+      },
+    ],
+    no-unused-vars: Array [
+      error,
+      Object {
+        argsIgnorePattern: ^_,
+      },
+    ],
+    prettier/prettier: Array [
+      error,
+      Object {
+        parser: babylon,
+        singleQuote: true,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Gets the eslint config when there is React as a project dependency 1`] = `
+Object {
+  env: Object {
+    browser: true,
+    jest: false,
+    jquery: false,
+    node: true,
+  },
+  extends: Array [
+    <PROJECT_ROOT>/node_modules/eslint-config-airbnb/index.js,
+    <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+  ],
+  parser: <PROJECT_ROOT>/node_modules/babel-eslint/lib/index.js,
+  plugins: Array [
+    prettier,
+    import,
+    react,
+    jsx-a11y,
+  ],
+  rules: Object {
+    comma-dangle: Array [
+      error,
+      never,
+    ],
+    import/no-extraneous-dependencies: Array [
+      error,
+      Object {
+        devDependencies: true,
+      },
+    ],
+    no-console: 0,
+    no-param-reassign: Array [
+      error,
+      Object {
+        props: false,
+      },
+    ],
+    no-plusplus: Array [
+      error,
+      Object {
+        allowForLoopAfterthoughts: true,
+      },
+    ],
+    no-unused-vars: Array [
+      error,
+      Object {
+        argsIgnorePattern: ^_,
+      },
+    ],
+    prettier/prettier: Array [
+      error,
+      Object {
+        parser: babylon,
+        singleQuote: true,
+      },
+    ],
+  },
+}
+`;

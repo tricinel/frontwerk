@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`format calls node with the script path and args 1`] = `"node /Users/tricinel/Work/Personal/repos/ff-scripts/packages/frontwerk/src/scripts/test.js --no-watch"`;
+exports[`format calls node with the script path and args 1`] = `node <PROJECT_ROOT>/src/scripts/test.js --no-watch`;
 
-exports[`format errors out when using the wrong node version 1`] = `"You must use Node version 8 or greater"`;
+exports[`format errors out when using the wrong node version 1`] = `You must use Node version 8 or greater`;
 
 exports[`format logs help with no args 1`] = `
 Array [
   Array [
-    "
+    
 Usage: ../ [script] [--flags]
 Available Scripts:
 build --bundle: Build your ES6 files into a single file using RollupJS
 build: Build your ES6 files using BabelJS
 lint: Lint your JS files using ESLint
 stylelint: Lint your CSS/SCSS/SASS files using Stylelint
-prettier: DEPRECATED: Please use format instead
+prettier: REMOVED: Please use format instead
 format: Format your JS files using Prettier
 test: Test your JS files using Jest
 flow: Run your files through the flow static type checker
 eject: Tired of frontwerk? Eject will copy all the required configs and packages to your app and remove itself afterwards.
 Options:
   All options depend on the script. The args you pass will be forwarded to the respective tool that's being run under the hood.
-",
+,
   ],
 ]
 `;
 
-exports[`format throws unknown script 1`] = `"Unknown script unknown-script. Please check if you need to update frontwerk."`;
+exports[`format throws unknown script 1`] = `Unknown script unknown-script. Please check if you need to update frontwerk.`;
