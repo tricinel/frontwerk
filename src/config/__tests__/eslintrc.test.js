@@ -28,7 +28,7 @@ test('Gets the eslint config when there is Jest as a project dependency', () => 
 test('Gets the eslint config when there is React as a project dependency', () => {
   jest.mock('../../utils/hasDep', () => ({ hasDep: dep => dep === 'react' }));
   const config = require('../eslintrc');
-  expect(config.env.jest).toBe(false);
+  expect(config.env.jquery).toBe(false);
   expect(config.plugins).toContain('react');
   expect(config.plugins).toContain('import');
   expect(config.plugins).toContain('jsx-a11y');

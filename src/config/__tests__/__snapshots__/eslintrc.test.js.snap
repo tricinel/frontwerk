@@ -122,17 +122,19 @@ exports[`Gets the eslint config when there is React as a project dependency 1`] 
 Object {
   env: Object {
     browser: true,
-    jest: false,
+    jest: true,
     jquery: false,
     node: true,
   },
   extends: Array [
     <PROJECT_ROOT>/node_modules/eslint-config-airbnb/index.js,
     <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+    plugin:jest/recommended,
   ],
   parser: <PROJECT_ROOT>/node_modules/babel-eslint/lib/index.js,
   plugins: Array [
     prettier,
+    jest,
     import,
     react,
     jsx-a11y,
