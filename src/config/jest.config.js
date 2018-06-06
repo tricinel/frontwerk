@@ -20,10 +20,14 @@ const jestConfig = {
   roots: [fromRoot('src')],
   testEnvironment:
     hasDep('webpack') || hasDep('rollup') || hasDep('react') ? 'jsdom' : 'node',
-  collectCoverageFrom: ['src/**/*.js'],
-  testMatch: ['**/__tests__/**/*.js'],
+  collectCoverageFrom: ['src/**/*.+(js|jsx)'],
+  testMatch: ['**/__tests__/**/*.+(js|jsx)'],
   testPathIgnorePatterns: [...ignores],
-  coveragePathIgnorePatterns: [...ignores, 'src/(umd|cjs|esm)-entry.js$'],
+  coveragePathIgnorePatterns: [
+    ...ignores,
+    'src/(umd|cjs|esm)-entry.js$',
+    '.stories.js$'
+  ],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
   coverageThreshold: {
     global: {
@@ -32,12 +36,16 @@ const jestConfig = {
       lines: threshold,
       statements: threshold
     }
-  }
+  },
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname'
+  ]
 };
 
 if (useBuiltInBabelConfig) {
   jestConfig.transform = {
-    '^.+\\.js$': path.join(__dirname, './babel-transform')
+    '^.+\\.(js|jsx)$': path.join(__dirname, './babel-transform')
   };
 }
 

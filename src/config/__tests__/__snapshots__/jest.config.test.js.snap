@@ -4,6 +4,6 @@ exports[`Sets the transform property on the jest config Does not use the babel t
 
 exports[`Sets the transform property on the jest config Uses the babel transform 1`] = `
 Object {
-  ^.+/.js$: <PROJECT_ROOT>/src/config/babel-transform,
+  ^.+/.(js|jsx)$: <PROJECT_ROOT>/src/config/babel-transform,
 }
 `;
