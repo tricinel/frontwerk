@@ -17,7 +17,8 @@ const { pkg } = require('./pkg');
 const hasDep = dep => {
   const declaredDeps = compose(keys, merge)(
     pkg.dependencies,
-    pkg.devDependencies
+    pkg.devDependencies,
+    pkg.peerDepedencies
   );
 
   const getDirectories = srcpath =>
