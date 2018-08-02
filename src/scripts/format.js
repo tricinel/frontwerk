@@ -7,7 +7,7 @@ const { fileExists } = require('../utils/fileExists');
 const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
 const { start } = require('../utils/logger');
 
-const args = process.argv.slice(2);
+let args = process.argv.slice(2);
 const parsedArgs = yargsParser(args);
 
 const config = useBuiltinConfig('prettier')
@@ -24,8 +24,8 @@ const ignore = useBuiltinIgnore
 const write = args.includes('--no-write') ? [] : ['--write'];
 
 const filesToApply = parsedArgs._.length
-  ? []
-  : ['**/*.+(js|json|less|css|ts|md)'];
+  ? parsedArgs._
+  : ['**/*.+(js|jsx|json|css|ts|md)'];
 
 start(whichConfig('prettier'));
 
