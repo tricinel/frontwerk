@@ -55,15 +55,6 @@ Object {
         singleQuote: true,
       },
     ],
-    react/jsx-filename-extension: Array [
-      1,
-      Object {
-        extensions: Array [
-          .js,
-          .jsx,
-        ],
-      },
-    ],
   },
 }
 `;
@@ -121,15 +112,6 @@ Object {
       Object {
         parser: babylon,
         singleQuote: true,
-      },
-    ],
-    react/jsx-filename-extension: Array [
-      1,
-      Object {
-        extensions: Array [
-          .js,
-          .jsx,
-        ],
       },
     ],
   },
