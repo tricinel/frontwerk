@@ -1,10 +1,10 @@
 const { hasDep } = require('../utils/hasDep');
 
 const hasFlow = hasDep('flow');
+const hasReact = hasDep('react');
 
-module.exports = {
+const rules = {
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -35,3 +35,12 @@ module.exports = {
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }]
   }
 };
+
+if (hasReact) {
+  rules.rules['react/jsx-filename-extension'] = [
+    1,
+    { extensions: ['.js', '.jsx'] }
+  ];
+}
+
+module.exports = rules;
