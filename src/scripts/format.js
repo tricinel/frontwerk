@@ -7,7 +7,7 @@ const { fileExists } = require('../utils/fileExists');
 const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
 const { start } = require('../utils/logger');
 
-let args = process.argv.slice(2);
+const args = process.argv.slice(2);
 const parsedArgs = yargsParser(args);
 
 const config = useBuiltinConfig('prettier')
