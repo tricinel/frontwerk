@@ -12,7 +12,8 @@ Usage: ../ [script] [--flags]
 Available Scripts:
 build --bundle: Build your ES6 files into a single file using RollupJS
 build: Build your ES6 files using BabelJS
-lint: Lint your JS files using ESLint
+lint: Lint your JS and Typescript files using ESLint and TSLint
+tslint: Lint your Typescript files using TSLint
 stylelint: Lint your CSS/SCSS/SASS files using Stylelint
 prettier: REMOVED: Please use format instead
 format: Format your JS files using Prettier

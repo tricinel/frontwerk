@@ -14,9 +14,15 @@ module.exports = {
     },
     {
       name: 'lint',
-      desc: 'Lint your JS files using ESLint',
+      desc: 'Lint your JS and Typescript files using ESLint and TSLint',
       opts:
-        'You can override the defaults by either passing your --config, defining a .eslintrc/eslintrc.js file or having a eslintConfig property in your package.json. All other eslint flags are supported.'
+        'You can override the defaults by either passing your --config, defining a .eslintrc/eslintrc.js file or having a eslintConfig property in your package.json for js files or tslint.json/tslint.yml for ts files. All other eslint or tslint flags are supported.'
+    },
+    {
+      name: 'tslint',
+      desc: 'Lint your Typescript files using TSLint',
+      opts:
+        'You can override the defaults by either passing your --config, defining a tslint.json/tslint.yml file. All other tslint flags are supported.'
     },
     {
       name: 'stylelint',

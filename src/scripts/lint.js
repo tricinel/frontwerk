@@ -7,6 +7,14 @@ const { resolveBin } = require('../utils/resolveBin');
 const { fileExists } = require('../utils/fileExists');
 const { warning, info, start } = require('../utils/logger');
 const { useBuiltinConfig, whichConfig } = require('../utils/whichConfig');
+const { hasDep } = require('../utils/hasDep');
+
+const useTsLint = hasDep('typescript') && hasDep('tslint');
+
+if (useTsLint && process.env.NODE_ENV !== 'test') {
+  /* eslint-disable global-require */
+  require('./tslint');
+}
 
 let args = process.argv.slice(2);
 
