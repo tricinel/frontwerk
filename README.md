@@ -5,6 +5,7 @@
 ![Build status][build-status-badge] ![Node Version][node-version-badge]
 ![Npm version][npm-version-badge]
 [![Npm downloads][npm-downloads-badge]][frontwerk-npm] ![License][license-badge]
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 CLI toolbox for common scripts for frontend projects that includes:
 
@@ -123,6 +124,18 @@ or, simply start with your own config to pass to ESLint:
 
 You can find more extensive documentation about each tool on the
 [website][frontwerkorg].
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars3.githubusercontent.com/u/216008?v=4" width="100px;"/><br /><sub><b>Bogdan Lazar</b></sub>](http://bogdanlazar.com)<br />[💻](https://github.com/tricinel/frontwerk/commits?author=tricinel "Code") [📖](https://github.com/tricinel/frontwerk/commits?author=tricinel "Documentation") [💡](#example-tricinel "Examples") [🤔](#ideas-tricinel "Ideas, Planning, & Feedback") [🔧](#tool-tricinel "Tools") | [<img src="https://avatars1.githubusercontent.com/u/835588?v=4" width="100px;"/><br /><sub><b>Alexander Plavinski</b></sub>](http://cilice.me/)<br />[💻](https://github.com/tricinel/frontwerk/commits?author=cilice "Code") [📦](#platform-cilice "Packaging/porting to new platform") [🔧](#tool-cilice "Tools") |
+| :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 # LICENSE
 
