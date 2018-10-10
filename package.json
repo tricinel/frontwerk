@@ -139,6 +139,7 @@
     "yargs-parser": "^10.0.0"
   },
   "devDependencies": {
+    "all-contributors-cli": "^5.4.0",
     "danger": "^3.7.15",
     "husky": "^1.0.0-rc.7",
     "jest-in-case": "^1.0.2",
