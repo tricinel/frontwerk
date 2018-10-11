@@ -1,0 +1,37 @@
+{
+  "projectName": "frontwerk",
+  "projectOwner": "tricinel",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "tricinel",
+      "name": "Bogdan Lazar",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/216008?v=4",
+      "profile": "http://bogdanlazar.com",
+      "contributions": [
+        "code",
+        "doc",
+        "example",
+        "ideas",
+        "tool"
+      ]
+    },
+    {
+      "login": "cilice",
+      "name": "Alexander Plavinski",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/835588?v=4",
+      "profile": "http://cilice.me/",
+      "contributions": [
+        "code",
+        "platform",
+        "tool"
+      ]
+    }
+  ]
+}
