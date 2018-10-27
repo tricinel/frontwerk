@@ -42,6 +42,16 @@
         "tool",
         "doc"
       ]
+    },
+    {
+      "login": "Dikaeinstein",
+      "name": "Solomon Okwa",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7033136?v=4",
+      "profile": "http://about.me/Dikaeinstein",
+      "contributions": [
+        "tool",
+        "code"
+      ]
     }
   ]
 }
