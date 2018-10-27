@@ -1,5 +1,6 @@
 const files = {
   eslint: ['.eslintrc', '.eslintrc.js'],
+  tslint: ['tslint.json', 'tslint.yaml', 'tslint.yml'],
   babel: ['.babelrc'],
   prettier: ['.prettierrc', 'prettier.config.js'],
   rollup: ['rollup.config.js'],
@@ -10,6 +11,7 @@ const files = {
 
 const pkgProps = {
   eslint: 'eslintConfig',
+  tslint: 'tslint',
   babel: 'babel',
   prettier: 'prettierrc',
   stylelint: 'stylelint',
@@ -18,6 +20,7 @@ const pkgProps = {
 
 const cliArgs = {
   eslint: 'config',
+  tslint: 'config',
   babel: 'presets',
   prettier: 'config',
   stylelint: 'config',

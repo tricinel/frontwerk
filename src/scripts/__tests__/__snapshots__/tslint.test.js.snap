@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tslint calls tslint CLI with default args 1`] = `tslint --config ./src/config/tslintconfig.js -p tsconfig.json <PROJECT_ROOT>/**/*.ts{,x}`;
+
+exports[`tslint does not use built-in config with --config 1`] = `tslint --config ./custom-config.js -p tsconfig.json <PROJECT_ROOT>/**/*.ts{,x}`;
+
+exports[`tslint does not use built-in config with tslint.json file 1`] = `tslint -p tsconfig.json <PROJECT_ROOT>/**/*.ts{,x}`;
+
+exports[`tslint does not use built-in config with tslint.yaml file 1`] = `tslint -p tsconfig.json <PROJECT_ROOT>/**/*.ts{,x}`;

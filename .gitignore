@@ -149,3 +149,6 @@ dist
 .eslintcache
 .tmp
 TODO.md
+
+# vscode
+.vscode
