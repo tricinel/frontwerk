@@ -1,0 +1,11 @@
+declare module 'rollup-plugin-json';
+declare module 'rollup-plugin-babel';
+declare module 'rollup-plugin-uglify';
+declare module 'rollup-plugin-node-builtins';
+declare module 'rollup-plugin-node-globals';
+declare module 'which';
+declare module 'ramda';
+declare module 'cross-spawn';
+declare module 'jest-in-case';
+declare module 'jest-serializer-path';
+declare module 'rimraf';

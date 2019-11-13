@@ -1,3 +1,45 @@
 {
-  "extends": "./eslint.js"
+  "extends": "./eslint.js",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".d.ts"]
+      }
+    }
+  },
+  "rules": {
+    "import/no-nodejs-modules": [
+      "error",
+      {
+        "allow": ["path", "fs", "child_process"]
+      }
+    ],
+    "@typescript-eslint/strict-boolean-expressions": [
+      "error",
+      { "ignoreRhs": true }
+    ],
+    "@typescript-eslint/no-type-alias": [
+      "error",
+      {
+        "allowTupleTypes": "always",
+        "allowMappedTypes": "always",
+        "allowAliases": "in-unions-and-intersections"
+      }
+    ],
+    "@typescript-eslint/no-unnecessary-condition": [
+      "error",
+      { "ignoreRhs": true }
+    ]
+  },
+  "overrides": [
+    {
+      // Disable the rule specifically for test files
+      "files": ["*.test.ts"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-require-imports": "off"
+      }
+    }
+  ]
 }
