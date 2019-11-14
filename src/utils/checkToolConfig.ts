@@ -6,6 +6,7 @@ export type Tools =
   | 'jest'
   | 'rollup';
 
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>; // eslint-disable-line @typescript-eslint/no-type-alias
 type ToolsConfig<T> = { [tool in Tools]: T };
 
 const files: ToolsConfig<string[]> = {
@@ -17,7 +18,7 @@ const files: ToolsConfig<string[]> = {
   jest: ['jest.config.js']
 };
 
-const pkgProps: Partial<ToolsConfig<string>> = {
+const pkgProps: Omit<ToolsConfig<string>, 'rollup'> = {
   eslint: 'eslintConfig',
   babel: 'babel',
   prettier: 'prettierrc',
@@ -25,12 +26,13 @@ const pkgProps: Partial<ToolsConfig<string>> = {
   jest: 'jest'
 };
 
-const cliArgs: Partial<ToolsConfig<string>> = {
+const cliArgs: ToolsConfig<string> = {
   eslint: 'config',
   babel: 'presets',
   prettier: 'config',
   stylelint: 'config',
-  jest: 'config'
+  jest: 'config',
+  rollup: 'config'
 };
 
 export { files, pkgProps, cliArgs };

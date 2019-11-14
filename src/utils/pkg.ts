@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { sync, PackageJson } from 'read-pkg-up';
+import { sync } from 'read-pkg-up';
 import { flip, has } from 'ramda';
 
-const defaultPkg: PackageJson = {
+const defaultPkg = {
   packageJson: {
     name: 'app',
     dependencies: {},
@@ -37,7 +37,8 @@ const ownPkg =
 const ownPkgPath =
   typeof ownPkgJson === 'undefined' ? defaultPkg.path : ownPkgJson.path;
 
-const hasPkgProp: (dep: string) => boolean = flip(has)(pkg);
+const hasPkgProp = (dep: string | null): boolean =>
+  typeof dep === 'string' && flip(has)(pkg)(dep);
 
 export interface Dependency {
   [packageName: string]: string;

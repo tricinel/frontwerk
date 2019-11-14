@@ -23,8 +23,13 @@ const filesExistConditions = (tool: Tools): boolean[] =>
 
 const conditions = (tool: Tools): boolean[] => {
   const hasNoFiles: boolean = allPass(filesDontExist(tool));
-  const hasNoPkgProp: boolean = always(!hasPkgProp(pkgProps[tool]));
-  const hasNoCliArg: boolean = always(!args.includes(`--${cliArgs[tool]}`));
+  let hasNoPkgProp = false;
+  let hasNoCliArg = false;
+
+  if (tool !== 'rollup') {
+    hasNoPkgProp = always(!hasPkgProp(pkgProps[tool]));
+    hasNoCliArg = always(!args.includes(`--${cliArgs[tool]}`));
+  }
 
   return [hasNoFiles, hasNoPkgProp, hasNoCliArg];
 };
@@ -32,7 +37,7 @@ const conditions = (tool: Tools): boolean[] => {
 const useBuiltinConfig = (tool: Tools): boolean => allPass(conditions(tool))();
 
 const passedConfig = (tool: Tools): string => {
-  const pkgProp = pkgProps[tool];
+  const pkgProp = tool === 'rollup' ? null : pkgProps[tool];
 
   return cond([
     [always(args.includes(`--${cliArgs[tool]}`)), always(parsedArgs.config)],

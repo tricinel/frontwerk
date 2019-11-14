@@ -36,16 +36,16 @@
   },
   "scripts": {
     "predevelop": "rimraf dist",
-    "develop": "babel --watch --config-file ./babel.config.development.js --extensions '.ts' src --out-dir dist",
+    "develop": "babel --watch --config-file ./babel.config.development.js --extensions '.ts,.js' src --out-dir dist",
     "build": "node dist build",
     "bundle:rollup": "node dist build --bundle",
     "test": "node dist test --no-watch",
-    "test:watch": "node dist test",
+    "test:watch": "ts-node src test",
     "test:update": "node dist test --updateSnapshot",
     "test:ci": "node dist test --silent --updateSnapshot",
-    "format": "node dist format src/**/*.ts",
-    "lint:scripts": "node dist lint src/**/*.ts",
-    "lint:css": "node dist stylelint",
+    "format": "ts-node src format src/**/*.{ts,js}",
+    "lint:scripts": "ts-node src lint src/**/*.{ts,js}",
+    "lint:css": "ts-node src stylelint",
     "check-all": "npm-run-all format --parallel test lint:scripts",
     "release": "np --no-cleanup",
     "contributors:add": "all-contributors add",
@@ -146,6 +146,7 @@
     "np": "^5.1.2",
     "precise-commits": "^1.0.2",
     "rimraf": "^3.0.0",
-    "slash": "^3.0.0"
+    "slash": "^3.0.0",
+    "ts-node": "^8.5.0"
   }
 }

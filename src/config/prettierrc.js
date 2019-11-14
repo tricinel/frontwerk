@@ -9,5 +9,4 @@ const config = {
   jsxBracketSameLine: false
 };
 
-export default config;
 module.exports = config;

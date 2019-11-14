@@ -20,7 +20,7 @@ const hasDep = (dep: string): boolean => {
   const declaredDeps = compose(
     keys,
     merge
-  )(pkg.dependencies, pkg.devDependencies, pkg.peerDepedencies);
+  )(pkg.dependencies, pkg.devDependencies, pkg.peerDependencies);
 
   const getDirectories = (srcpath: string): string[] =>
     fs

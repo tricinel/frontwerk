@@ -13,11 +13,13 @@
     "pretty": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017",
+    "target": "esnext",
     "lib": ["es2017"],
     "outDir": "./dist",
     "declaration": false,
-    "declarationMap": false
+    "declarationMap": false,
+    "noEmit": true,
+    "typeRoots": ["./node_modules/@types", "./src"]
   },
-  "include": ["src/**/*.ts", "src/**/*.js"]
+  "include": ["src"]
 }

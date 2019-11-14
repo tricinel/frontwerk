@@ -49,18 +49,6 @@ const docs = {
       desc: 'Test your JS files using Jest',
       opts:
         'You can override the defaults by either passing your --config or having a jes property in your package.json. All other Jest flags are supported.'
-    },
-    {
-      name: 'flow',
-      desc: 'Run your files through the flow static type checker',
-      opts:
-        'You can override the defaults by defining a .flowconfig file. All other Flow flags are supported.'
-    },
-    {
-      name: 'eject',
-      desc:
-        'Tired of frontwerk? Eject will copy all the required configs and packages to your app and remove itself afterwards.',
-      opts: ''
     }
   ]
 };
