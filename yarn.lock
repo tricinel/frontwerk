@@ -3667,9 +3667,9 @@ eslint-config-frontwerk-react@^1.0.1:
     eslint-config-frontwerk "^1.0.1"
 
 eslint-config-frontwerk-typescript@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-frontwerk-typescript/-/eslint-config-frontwerk-typescript-1.0.0.tgz#41d5d96a21a103823c14bfb94977af40f9443d95"
-  integrity sha512-m5QC7EuATfQ9HRr0T8qErF3X6im7/q3aIrjEUsbk8QBG6A2DW8D2cXiPr1mQD03zWSPj1xUpecF/HbJ57T3/PQ==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-frontwerk-typescript/-/eslint-config-frontwerk-typescript-1.0.1.tgz#251662854f7ce034e6ec646591fba362a3ec775e"
+  integrity sha512-omEdjXVusYngHKHa15JuMtUu0OwYRpQzgaObqrcaARUWUfJjC4P/4Hin7mjcdjuL3x7zwESRYSW09fBJENInFg==
   dependencies:
     eslint-config-frontwerk "^1.0.0"
 

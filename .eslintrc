@@ -13,22 +13,6 @@
       {
         "allow": ["path", "fs", "child_process"]
       }
-    ],
-    "@typescript-eslint/strict-boolean-expressions": [
-      "error",
-      { "ignoreRhs": true }
-    ],
-    "@typescript-eslint/no-type-alias": [
-      "error",
-      {
-        "allowTupleTypes": "always",
-        "allowMappedTypes": "always",
-        "allowAliases": "in-unions-and-intersections"
-      }
-    ],
-    "@typescript-eslint/no-unnecessary-condition": [
-      "error",
-      { "ignoreRhs": true }
     ]
   },
   "overrides": [
