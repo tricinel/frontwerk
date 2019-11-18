@@ -1,9 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-import { sync } from 'read-pkg-up';
+import { sync, PackageJson } from 'read-pkg-up';
 import { flip, has } from 'ramda';
 
-const defaultPkg = {
+interface SafePackageJson {
+  name: string;
+  dependencies: Dependencies;
+  peerDependencies: Dependencies;
+  devDependencies: Dependencies;
+}
+
+interface Package {
+  packageJson: SafePackageJson;
+  path: string;
+}
+
+export interface Dependencies {
+  [packageName: string]: string;
+}
+
+const defaultPkg: Package = {
   packageJson: {
     name: 'app',
     dependencies: {},
@@ -11,6 +27,31 @@ const defaultPkg = {
     devDependencies: {}
   },
   path: process.cwd()
+};
+
+const ensurePackageJson = (
+  pkgJson: PackageJson,
+  defaultPkgJson: SafePackageJson
+): SafePackageJson => {
+  if (typeof pkgJson === 'undefined') {
+    return defaultPkgJson;
+  }
+
+  return {
+    name: typeof pkgJson.name === 'string' ? pkgJson.name : defaultPkgJson.name,
+    dependencies:
+      typeof pkgJson.dependencies === 'undefined'
+        ? defaultPkgJson.dependencies
+        : pkgJson.dependencies,
+    devDependencies:
+      typeof pkgJson.devDependencies === 'undefined'
+        ? defaultPkgJson.devDependencies
+        : pkgJson.devDependencies,
+    peerDependencies:
+      typeof pkgJson.peerDependencies === 'undefined'
+        ? defaultPkgJson.peerDependencies
+        : pkgJson.peerDependencies
+  };
 };
 
 // The user's package.json
@@ -21,7 +62,7 @@ const appPkgJson = sync({
 const pkg =
   typeof appPkgJson === 'undefined'
     ? defaultPkg.packageJson
-    : appPkgJson.packageJson;
+    : ensurePackageJson(appPkgJson.packageJson, defaultPkg.packageJson);
 const pkgPath =
   typeof appPkgJson === 'undefined' ? defaultPkg.path : appPkgJson.path;
 
@@ -33,15 +74,11 @@ const ownPkgJson = sync({
 const ownPkg =
   typeof ownPkgJson === 'undefined'
     ? defaultPkg.packageJson
-    : ownPkgJson.packageJson;
+    : ensurePackageJson(ownPkgJson.packageJson, defaultPkg.packageJson);
 const ownPkgPath =
   typeof ownPkgJson === 'undefined' ? defaultPkg.path : ownPkgJson.path;
 
 const hasPkgProp = (dep: string | null): boolean =>
   typeof dep === 'string' && flip(has)(pkg)(dep);
-
-export interface Dependency {
-  [packageName: string]: string;
-}
 
 export { pkg, pkgPath, ownPkg, ownPkgPath, hasPkgProp };

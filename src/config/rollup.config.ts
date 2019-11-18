@@ -6,7 +6,7 @@ import nodeBuiltIns from 'rollup-plugin-node-builtins';
 import nodeGlobals from 'rollup-plugin-node-globals';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
-import { hasPkgProp, pkg, Dependency } from '../utils/pkg';
+import { hasPkgProp, pkg, Dependencies } from '../utils/pkg';
 import parseEnv from '../utils/parseEnv';
 import fileExists from '../utils/fileExists';
 import { capitalize, toCamelCase } from '../utils/strings';
@@ -20,8 +20,8 @@ const buildName = parseEnv('BUILD_NAME', capitalize(toCamelCase(pkg.name)));
 
 const peerDependencies = Object.keys(pkg.peerDependencies);
 
-const defaultGlobals: Dependency[] = peerDependencies.reduce(
-  (deps: Dependency[], dep: string) => ({
+const defaultGlobals: Dependencies = peerDependencies.reduce(
+  (deps: Dependencies, dep: string) => ({
     ...deps,
     [dep]: capitalize(toCamelCase(dep))
   }),
@@ -48,11 +48,11 @@ const input = parseEnv<string>('BUILD_INPUT', 'src/index.js');
 const output = [
   { file: filepath, format: esm ? 'es' : format, name: buildName }
 ];
-const externalDependencies = parseEnv<Dependency[]>(
+const externalDependencies = parseEnv<string[]>(
   'BUILD_EXTERNAL',
   peerDependencies
 );
-const globals = parseEnv<Dependency[]>('BUILD_GLOBALS', defaultGlobals);
+const globals = parseEnv<Dependencies>('BUILD_GLOBALS', defaultGlobals);
 
 const here = (dirPath: string): string => path.join(__dirname, dirPath);
 const useBuiltinConfig = !(fileExists('.babelrc') || hasPkgProp('babel'));

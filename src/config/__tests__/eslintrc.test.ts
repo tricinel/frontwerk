@@ -16,7 +16,9 @@ afterEach(() => {
 });
 
 test('Gets the eslint config when there is Jest as a project dependency', () => {
-  jest.mock('../../utils/hasDep', () => ({ hasDep: dep => dep === 'jest' }));
+  jest.mock('../../utils/hasDep', () => ({
+    hasDep: (dep: string): boolean => dep === 'jest'
+  }));
   const config = require('../eslintrc');
   expect(config.env.jest).toBe(true);
   expect(config.plugins).toContain('jest');
@@ -27,7 +29,9 @@ test('Gets the eslint config when there is Jest as a project dependency', () => 
 });
 
 test('Gets the eslint config when there is React as a project dependency', () => {
-  jest.mock('../../utils/hasDep', () => ({ hasDep: dep => dep === 'react' }));
+  jest.mock('../../utils/hasDep', () => ({
+    hasDep: (dep: string): boolean => dep === 'react'
+  }));
   const config = require('../eslintrc');
   expect(config.env.jquery).toBe(false);
   expect(config.plugins).toContain('react');
@@ -39,7 +43,7 @@ test('Gets the eslint config when there is React as a project dependency', () =>
 
 test('Gets the eslint config when there are Jest and jQuery as project dependencies', () => {
   jest.mock('../../utils/hasDep', () => ({
-    hasDep: dep => dep === 'jest' || dep === 'jquery'
+    hasDep: (dep: string): boolean => dep === 'jest' || dep === 'jquery'
   }));
   const config = require('../eslintrc');
   expect(config.env.jest).toBe(true);

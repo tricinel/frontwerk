@@ -16,22 +16,16 @@ afterEach(() => {
 });
 
 test('Gets the babel config when there is React as a project dependency', () => {
-  jest.mock('../../utils/hasDep', () => ({ hasDep: dep => dep === 'react' }));
+  jest.mock('../../utils/hasDep', () => ({
+    hasDep: (dep: string): boolean => dep === 'react'
+  }));
   const config = require('../babelrc');
   expect(config.presets).toContain(require.resolve('babel-preset-react'));
 });
 
-test('Gets the babel config when there is Flow as a project dependency', () => {
-  jest.mock('../../utils/hasDep', () => ({
-    hasDep: dep => dep === 'flow-bin'
-  }));
-  const config = require('../babelrc');
-  expect(config.presets).toContain(require.resolve('babel-preset-flow'));
-});
-
 test('Gets the babel config when we are building with rollup', () => {
   jest.mock('../../utils/parseEnv', () => ({
-    parseEnv: value => value === 'BUILD_ROLLUP'
+    parseEnv: (value: string): boolean => value === 'BUILD_ROLLUP'
   }));
   const config = require('../babelrc');
   expect(config.plugins).toContain(

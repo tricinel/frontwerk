@@ -46,7 +46,8 @@
     "format": "ts-node src format src/**/*.{ts,js}",
     "lint:scripts": "ts-node src lint src/**/*.{ts,js}",
     "lint:css": "ts-node src stylelint",
-    "check-all": "npm-run-all format --parallel test lint:scripts",
+    "typecheck": "tsc --noEmit",
+    "check-all": "npm-run-all format --parallel test lint:scripts typecheck",
     "release": "np --no-cleanup",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
@@ -135,8 +136,8 @@
     "yargs-parser": "^16.1.0"
   },
   "devDependencies": {
-    "@babel/node": "^7.7.0",
     "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
     "all-contributors-cli": "^6.10.0",
     "danger": "^9.2.4",
     "husky": "^3.0.9",
