@@ -23,7 +23,9 @@ test('Gets the eslint config when there is Jest as a project dependency', () => 
   expect(config.env.jest).toBe(true);
   expect(config.plugins).toContain('jest');
   expect(config.extends).toContain('plugin:jest/recommended');
-  expect(config.plugins).not.toContain('react');
+  expect(config.extends).toEqual(
+    expect.arrayContaining([expect.stringContaining('eslint-config-frontwerk')])
+  );
 
   expect(config).toMatchSnapshot();
 });
@@ -34,9 +36,27 @@ test('Gets the eslint config when there is React as a project dependency', () =>
   }));
   const config = require('../eslintrc');
   expect(config.env.jquery).toBe(false);
-  expect(config.plugins).toContain('react');
-  expect(config.plugins).toContain('import');
-  expect(config.plugins).toContain('jsx-a11y');
+  expect(config.extends).toEqual(
+    expect.arrayContaining([
+      expect.stringContaining('eslint-config-frontwerk-react')
+    ])
+  );
+
+  expect(config).toMatchSnapshot();
+});
+
+test('Gets the eslint config when there is TypeScript as a project dependency', () => {
+  jest.mock('../../utils/hasDep', () => ({
+    hasDep: (dep: string): boolean => dep === 'typescript'
+  }));
+  const config = require('../eslintrc');
+  expect(config.env.jquery).toBe(false);
+  expect(config.extends).toEqual(
+    expect.arrayContaining([
+      expect.stringContaining('eslint-config-frontwerk-typescript'),
+      expect.stringContaining('prettier/@typescript-eslint')
+    ])
+  );
 
   expect(config).toMatchSnapshot();
 });

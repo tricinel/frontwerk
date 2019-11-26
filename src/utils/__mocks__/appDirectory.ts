@@ -1,5 +1,3 @@
-const appDirectoryMock = {
-  appDirectory: 'path/to/package/'
-};
+const appDirectoryMock = 'path/to/package/';
 
 export default appDirectoryMock;

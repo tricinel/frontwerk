@@ -7,12 +7,11 @@ import {
   winPathSerializer
 } from '../../helpers/serializers';
 
-jest.mock('cross-spawn');
-jest.mock('jest');
-
 expect.addSnapshotSerializer(unquoteSerializer);
 expect.addSnapshotSerializer(winPathSerializer);
 expect.addSnapshotSerializer(jestSerializerPath);
+
+jest.mock('consola');
 
 const testCases = [
   {
@@ -58,11 +57,14 @@ const testFn = ({
   hasPkgProp = () => false,
   args = []
 }) => {
-  const { sync: crossSpawnSyncMock } = require('cross-spawn');
-  const originalExit = jest.spyOn(process, 'exit');
+  const crossSpawn = require('cross-spawn');
+  const syncSpy = jest
+    .spyOn(crossSpawn, 'sync')
+    .mockImplementation(() => ({ status: 0 }));
+  const exitSpy = jest.spyOn(process, 'exit');
   const { argv: originalArgv } = process;
 
-  Object.assign(require('../../utils/fileExists'), { fileExists });
+  Object.assign(require('../../utils/fileExists'), { default: fileExists });
   Object.assign(require('../../utils/pkg'), { hasPkgProp });
   Object.assign(require('../../utils/resolveBin'), {
     resolveBin: (modName: string, { executable = modName } = {}) => executable
@@ -71,17 +73,17 @@ const testFn = ({
   try {
     // Tests
     process.argv = ['node', '../stylelint', ...args];
-    crossSpawnSyncMock.mockClear();
 
     require('../stylelint');
 
-    expect(crossSpawnSyncMock).toHaveBeenCalledTimes(1);
-    const [firstCall] = crossSpawnSyncMock.mock.calls;
-    const [script, calledArgs] = firstCall;
+    expect(syncSpy).toHaveBeenCalledTimes(1);
+    const [firstCall] = syncSpy.mock.calls;
+    const [script, calledArgs] = firstCall as [string, string[]];
     expect([script, ...calledArgs].join(' ')).toMatchSnapshot();
   } finally {
     // We reset everything afterEach
-    originalExit.mockRestore();
+    exitSpy.mockRestore();
+    syncSpy.mockRestore();
     process.argv = originalArgv;
     jest.resetModules();
   }

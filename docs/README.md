@@ -10,14 +10,14 @@ browse the [frontwerk.org][frontwerk.org] website.
 
 Here are some shortcuts to get you started:
 
-* [Getting started][quick-start]
-* [Linting Javascript][lint]
-* [Linting CSS][stylelint]
-* [Testing][test]
-* [Formatting][format]
-* [Compile JS][babel]
-* [Bundle with Webpack][webpack]
-* [Bundle with Rollup][rollup]
+- [Getting started][quick-start]
+- [Linting Javascript][lint]
+- [Linting CSS][stylelint]
+- [Testing][test]
+- [Formatting][format]
+- [Compile JS][babel]
+- [Bundle with Webpack][webpack]
+- [Bundle with Rollup][rollup]
 
 [frontwerk.org]: https://frontwerk.org
 [docs-repo]: https://github.com/tricinel/frontwerk.org

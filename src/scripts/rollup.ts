@@ -7,6 +7,7 @@ import getConfig from '../utils/getConfig';
 import resolveBin from '../utils/resolveBin';
 import { useBuiltinConfig, whichConfig } from '../utils/whichConfig';
 import { start } from '../utils/logger';
+import safeExit from '../utils/proc';
 
 const rollup = resolveBin('rollup');
 const crossEnv = resolveBin('cross-env');
@@ -83,4 +84,4 @@ const result = spawn.sync(resolveBin('concurrently'), scripts, {
   stdio: 'inherit'
 });
 
-process.exit(result.status);
+safeExit(result.status);

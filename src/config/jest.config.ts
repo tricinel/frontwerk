@@ -3,7 +3,11 @@ import { hasDep } from '../utils/hasDep';
 import fromRoot from '../utils/fromRoot';
 import fileExists from '../utils/fileExists';
 
-const useBuiltInBabelConfig = !(fileExists('.babelrc') || hasPkgProp('babel'));
+const useBuiltInBabelConfig = !(
+  fileExists('.babelrc') ||
+  fileExists('babel.config.js') ||
+  hasPkgProp('babel')
+);
 
 const ignores = [
   '/node_modules/',

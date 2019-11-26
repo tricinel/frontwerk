@@ -35,10 +35,6 @@ const docs = {
         'You can override the defaults by either passing your --config, defining a .stylelintrc/stylelint.config.js file or having a stylelint property in your package.json. All other stylelint flags are supported.'
     },
     {
-      name: 'prettier',
-      desc: 'REMOVED: Please use format instead'
-    },
-    {
       name: 'format',
       desc: 'Format your JS files using Prettier',
       opts:

@@ -8,8 +8,6 @@ expect.addSnapshotSerializer(unquoteSerializer);
 expect.addSnapshotSerializer(winPathSerializer);
 expect.addSnapshotSerializer(jestSerializerPath);
 
-jest.mock('cross-spawn');
-
 const testCases = [
   {
     name: 'errors out when using the wrong node version',
@@ -28,6 +26,16 @@ const testCases = [
   {
     name: 'logs help with no args',
     snapshotLog: true
+  },
+  {
+    name: 'handles SIGKILL',
+    args: ['test'],
+    signal: 'SIGKILL'
+  },
+  {
+    name: 'handles SIGTERM',
+    args: ['test'],
+    signal: 'SIGTERM'
   }
 ];
 
@@ -35,11 +43,17 @@ const testFn = ({
   snapshotLog = false,
   throws = false,
   args = [],
-  nodeVersion = 'v8.4.0'
+  nodeVersion = 'v10',
+  signal = null
 }) => {
-  const { sync: crossSpawnSyncMock } = require('cross-spawn');
-  const originalExit = jest.spyOn(process, 'exit');
-  const originalLog = jest.spyOn(console, 'log');
+  const crossSpawn = require('cross-spawn');
+  const syncSpy = jest
+    .spyOn(crossSpawn, 'sync')
+    .mockImplementation(() => ({ signal, status: 0 }));
+  const consola = require('consola');
+  const exitSpy = jest.spyOn(process, 'exit');
+  const logSpy = jest.spyOn(consola, 'info').mockImplementation(() => {});
+  const errorSpy = jest.spyOn(consola, 'error').mockImplementation(() => {});
   const { argv: originalArgv } = process;
 
   delete process.version;
@@ -48,15 +62,18 @@ const testFn = ({
   try {
     // Tests
     process.argv = ['node', '../', ...args];
-    crossSpawnSyncMock.mockClear();
     require('../');
 
-    if (snapshotLog) {
-      expect(originalLog.mock.calls).toMatchSnapshot();
+    if (typeof signal === 'string') {
+      expect(errorSpy).toHaveBeenCalledTimes(1);
+      expect(errorSpy.mock.calls).toMatchSnapshot();
+    } else if (snapshotLog) {
+      expect(logSpy).toHaveBeenCalledTimes(1);
+      expect(logSpy.mock.calls).toMatchSnapshot();
     } else {
-      expect(crossSpawnSyncMock).toHaveBeenCalledTimes(1);
-      const [firstCall] = crossSpawnSyncMock.mock.calls;
-      const [script, calledArgs] = firstCall;
+      expect(syncSpy).toHaveBeenCalledTimes(1);
+      const [firstCall] = syncSpy.mock.calls;
+      const [script, calledArgs] = firstCall as [string, string[]];
       expect([script, ...calledArgs].join(' ')).toMatchSnapshot();
     }
   } catch (error) {
@@ -67,11 +84,13 @@ const testFn = ({
     }
   } finally {
     // We reset everything afterEach
-    originalExit.mockRestore();
-    originalLog.mockRestore();
+    exitSpy.mockRestore();
+    logSpy.mockRestore();
+    errorSpy.mockRestore();
+    syncSpy.mockRestore();
     process.argv = originalArgv;
     jest.resetModules();
   }
 };
 
-cases('format', testFn, testCases);
+cases('index', testFn, testCases);

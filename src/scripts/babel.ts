@@ -7,6 +7,7 @@ import fromRoot from '../utils/fromRoot';
 import resolveBin from '../utils/resolveBin';
 import { useBuiltinConfig, whichConfig } from '../utils/whichConfig';
 import { start } from '../utils/logger';
+import safeExit from '../utils/proc';
 
 const args = process.argv.slice(2);
 const parsedArgs = yargsParser(args);
@@ -39,4 +40,4 @@ const result = spawn.sync(
   { stdio: 'inherit' }
 );
 
-process.exit(result.status);
+safeExit(result.status);

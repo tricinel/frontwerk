@@ -1,7 +1,7 @@
-import { hasAllDeps } from '../utils/hasDep';
+import { hasDep } from '../utils/hasDep';
 
-const hasReact = hasAllDeps<boolean>(['react'], true);
-const hasTypeScript = hasAllDeps<boolean>(['typescript'], true);
+const hasReact = hasDep('react');
+const hasTypeScript = hasDep('typescript');
 
 interface ESLintRuleConfig {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,30 +10,26 @@ interface ESLintRuleConfig {
 
 type ESLintRuleOptions = [string, ESLintRuleConfig];
 
-interface ESLintSimpleRule {
+interface ESLintSimpleRules {
   [k: string]: string | number;
 }
 
-interface ESLintRuleWithOptions {
+interface ESLintRulesWithOptions {
   [k: string]: ESLintRuleOptions;
 }
 
-type ESLintRule = ESLintSimpleRule | ESLintRuleWithOptions;
+type ESLintRules = ESLintSimpleRules | ESLintRulesWithOptions;
 
-const additionalRules: ESLintRule[] = [];
+const additionalRules: ESLintRules = {};
 
 if (hasReact) {
-  // 'react/jsx-filename-extension': ['error', { extensions: [] }]
-  const key = 'react/jsx-filename-extension';
-  const rule: ESLintRule = {
-    [key]: ['error', { extensions: ['.jsx'] }]
-  };
+  const rule: ESLintRuleOptions = ['error', { extensions: ['.jsx'] }];
 
   if (hasTypeScript) {
-    rule[key][1].extensions.concat(['.ts', '.tsx']);
+    rule[1].extensions = [...rule[1].extensions, '.ts', '.tsx'];
   }
 
-  additionalRules.concat([rule]);
+  additionalRules['react/jsx-filename-extension'] = rule;
 }
 
 const rules = {

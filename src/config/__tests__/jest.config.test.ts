@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-
 import jestSerializerPath from 'jest-serializer-path';
 
 import {
@@ -11,7 +10,7 @@ expect.addSnapshotSerializer(unquoteSerializer);
 expect.addSnapshotSerializer(winPathSerializer);
 expect.addSnapshotSerializer(jestSerializerPath);
 
-jest.mock('../../utils/fromRoot', () => ({ fromRoot: () => '' }));
+jest.mock('../../utils/fromRoot', () => () => '');
 
 afterEach(() => {
   jest.resetModules();
@@ -37,13 +36,13 @@ describe('Gets the correct test environment for jest', () => {
 
 describe('Sets the transform property on the jest config', () => {
   test('Uses the babel transform', () => {
-    jest.mock('../../utils/fileExists', () => ({ fileExists: () => false }));
+    jest.mock('../../utils/fileExists', () => () => false);
     const config = require('../jest.config');
     expect(config.transform).toMatchSnapshot();
   });
 
   test('Does not use the babel transform', () => {
-    jest.mock('../../utils/fileExists', () => ({ fileExists: () => true }));
+    jest.mock('../../utils/fileExists', () => () => true);
     const config = require('../jest.config');
     expect(config.transform).toMatchSnapshot();
   });

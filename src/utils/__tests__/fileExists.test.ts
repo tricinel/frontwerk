@@ -1,13 +1,12 @@
+import fs from 'fs';
+
 import fileExists from '../fileExists';
 
 jest.mock('fs');
 jest.mock('../appDirectory.ts');
 
-const MOCK_FILE_INFO = ['path/to/package/file.js'];
-
 beforeEach(() => {
-  // eslint-disable-next-line global-require
-  require('fs').setMockFiles(MOCK_FILE_INFO);
+  fs.existsSync = jest.fn(file => file === 'path/to/package/file.js');
 });
 
 test('A file exists relative to the appDirectory', () => {

@@ -3,14 +3,14 @@ import path from 'path';
 import { sync, PackageJson } from 'read-pkg-up';
 import { flip, has } from 'ramda';
 
-interface SafePackageJson {
+export interface SafePackageJson {
   name: string;
   dependencies: Dependencies;
   peerDependencies: Dependencies;
   devDependencies: Dependencies;
 }
 
-interface Package {
+export interface Package {
   packageJson: SafePackageJson;
   path: string;
 }

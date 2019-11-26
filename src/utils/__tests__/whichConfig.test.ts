@@ -2,10 +2,12 @@
 import cases from 'jest-in-case';
 
 jest.mock('jest');
+jest.mock('../appDirectory.ts');
 
 const useBuiltinConfigTestCases = [
   {
-    name: 'use built in config'
+    name: 'use built in config',
+    tool: 'eslint'
   }
 ];
 
@@ -116,8 +118,8 @@ const useBuiltinConfigTestFn = ({
 }) => {
   const { argv: originalArgv } = process;
 
-  Object.assign(require('../fileExists'), { fileExists });
-  Object.assign(require('../pkg'), { hasPkgProp });
+  Object.assign(require('../fileExists.ts'), { default: fileExists });
+  Object.assign(require('../pkg.ts'), { hasPkgProp });
 
   try {
     process.argv = ['node', 'whichConfig', ...args];
@@ -143,8 +145,8 @@ const useProjectConfigTestFn = ({
 }) => {
   const { argv: originalArgv } = process;
 
-  Object.assign(require('../fileExists'), { fileExists });
-  Object.assign(require('../pkg'), { hasPkgProp });
+  Object.assign(require('../fileExists.ts'), { default: fileExists });
+  Object.assign(require('../pkg.ts'), { hasPkgProp });
 
   try {
     process.argv = ['node', 'whichConfig', ...args];

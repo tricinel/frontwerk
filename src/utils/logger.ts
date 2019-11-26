@@ -4,28 +4,28 @@ import consola from 'consola';
 import { compose, join } from 'ramda';
 
 const argsToArray = (...args: string[]): string[] => [...args];
-const formatMessage = compose(
+const formatMessage: (...args: string[]) => string = compose(
   join('\n'),
   argsToArray
 );
 
-const success = compose(
+const success: (...args: string[]) => void = compose(
   consola.success,
   formatMessage
 );
-const error = compose(
+const error: (...args: string[]) => void = compose(
   consola.error,
   formatMessage
 );
-const warning = compose(
+const warning: (...args: string[]) => void = compose(
   consola.warn,
   formatMessage
 );
-const info = compose(
+const info: (...args: string[]) => void = compose(
   consola.info,
   formatMessage
 );
-const start = compose(
+const start: (...args: string[]) => void = compose(
   consola.start,
   formatMessage
 );

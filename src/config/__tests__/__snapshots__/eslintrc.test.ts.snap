@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gets the eslint config when there are Jest and jQuery as project dependencies 1`] = `
+Object {
+  env: Object {
+    browser: true,
+    jest: true,
+    jquery: true,
+    node: true,
+  },
+  extends: Array [
+    <PROJECT_ROOT>/node_modules/eslint-config-frontwerk/index.js,
+    <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+    plugin:prettier/recommended,
+    plugin:jest/recommended,
+  ],
+  parserOptions: Object {},
+  plugins: Array [
+    jest,
+  ],
+  rules: Object {
+    import/no-extraneous-dependencies: Array [
+      error,
+      Object {
+        devDependencies: true,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Gets the eslint config when there is Jest as a project dependency 1`] = `
+Object {
+  env: Object {
+    browser: true,
+    jest: true,
+    jquery: false,
+    node: true,
+  },
+  extends: Array [
+    <PROJECT_ROOT>/node_modules/eslint-config-frontwerk/index.js,
+    <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+    plugin:prettier/recommended,
+    plugin:jest/recommended,
+  ],
+  parserOptions: Object {},
+  plugins: Array [
+    jest,
+  ],
+  rules: Object {
+    import/no-extraneous-dependencies: Array [
+      error,
+      Object {
+        devDependencies: true,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Gets the eslint config when there is React as a project dependency 1`] = `
+Object {
+  env: Object {
+    browser: true,
+    jest: true,
+    jquery: false,
+    node: true,
+  },
+  extends: Array [
+    <PROJECT_ROOT>/node_modules/eslint-config-frontwerk-react/index.js,
+    <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+    plugin:prettier/recommended,
+    plugin:jest/recommended,
+  ],
+  parserOptions: Object {},
+  plugins: Array [
+    jest,
+  ],
+  rules: Object {
+    import/no-extraneous-dependencies: Array [
+      error,
+      Object {
+        devDependencies: true,
+      },
+    ],
+    react/jsx-filename-extension: Array [
+      error,
+      Object {
+        extensions: Array [
+          .jsx,
+        ],
+      },
+    ],
+  },
+}
+`;
+
+exports[`Gets the eslint config when there is TypeScript as a project dependency 1`] = `
+Object {
+  env: Object {
+    browser: true,
+    jest: true,
+    jquery: false,
+    node: true,
+  },
+  extends: Array [
+    <PROJECT_ROOT>/node_modules/eslint-config-frontwerk-typescript/index.js,
+    prettier/@typescript-eslint,
+    <PROJECT_ROOT>/node_modules/eslint-config-prettier/index.js,
+    plugin:prettier/recommended,
+    plugin:jest/recommended,
+  ],
+  parserOptions: Object {
+    project: ./tsconfig.json,
+    tsconfigRootDir: <PROJECT_ROOT>,
+  },
+  plugins: Array [
+    jest,
+  ],
+  rules: Object {
+    import/no-extraneous-dependencies: Array [
+      error,
+      Object {
+        devDependencies: true,
+      },
+    ],
+  },
+}
+`;

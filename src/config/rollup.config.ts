@@ -5,25 +5,25 @@ import rollupBabel from 'rollup-plugin-babel';
 import nodeBuiltIns from 'rollup-plugin-node-builtins';
 import nodeGlobals from 'rollup-plugin-node-globals';
 import nodeResolve from 'rollup-plugin-node-resolve';
+import { toUpperFirst, toCamelCase } from 'ramda-extension';
 
 import { hasPkgProp, pkg, Dependencies } from '../utils/pkg';
 import parseEnv from '../utils/parseEnv';
 import fileExists from '../utils/fileExists';
-import { capitalize, toCamelCase } from '../utils/strings';
 
 const format = parseEnv<string>('BUILD_FORMAT');
 const minify = parseEnv<boolean>('BUILD_MINIFY', false);
 const filenamePrefix = parseEnv<string>('BUILD_FILENAME_PREFIX', '');
 const filenameSuffix = parseEnv<string>('BUILD_FILENAME_SUFFIX', '');
 const isNode = parseEnv<boolean>('BUILD_NODE', false);
-const buildName = parseEnv('BUILD_NAME', capitalize(toCamelCase(pkg.name)));
+const buildName = parseEnv('BUILD_NAME', toUpperFirst(toCamelCase(pkg.name)));
 
 const peerDependencies = Object.keys(pkg.peerDependencies);
 
 const defaultGlobals: Dependencies = peerDependencies.reduce(
   (deps: Dependencies, dep: string) => ({
     ...deps,
-    [dep]: capitalize(toCamelCase(dep))
+    [dep]: toUpperFirst(toCamelCase(dep))
   }),
   {}
 );
@@ -67,7 +67,7 @@ const config = {
   plugins: [
     isNode ? nodeBuiltIns() : null,
     isNode ? nodeGlobals() : null,
-    nodeResolve({ preferBuiltins: isNode, jsnext: true, main: true }),
+    nodeResolve({ preferBuiltins: isNode }),
     commonjs({ include: 'node_modules/**' }),
     json(),
     rollupBabel({

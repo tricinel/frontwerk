@@ -2,7 +2,9 @@ import path from 'path';
 import spawn from 'cross-spawn';
 import { compose, join, map } from 'ramda';
 
+import { error, info } from './utils/logger';
 import docs, { Script } from './docs';
+import safeExit from './utils/proc';
 
 const [executor, ignoredBin, script, ...args] = process.argv;
 
@@ -12,6 +14,21 @@ const attemptResolve = (...resolveArgs: [string]) => {
   } catch (error) {
     return null;
   }
+};
+
+const handleSignal = (signal: string): void => {
+  if (signal === 'SIGKILL') {
+    error(
+      `The script "${script}" failed because the process exited too early.`,
+      'This probably means the system ran out of memory or someone called `kill -9` on the process.'
+    );
+  } else if (signal === 'SIGTERM') {
+    error(
+      `The script "${script}" failed because the process exited too early.`,
+      'Someone might have called `kill` or `killall`, or the system could be shutting down.'
+    );
+  }
+  safeExit(1);
 };
 
 const runScript = () => {
@@ -28,10 +45,14 @@ const runScript = () => {
     stdio: 'inherit'
   });
 
-  process.exit(result.status);
+  if (result.signal) {
+    handleSignal(result.signal);
+  }
+
+  safeExit(result.status);
 };
 
-const showErrorMessage = () => {
+const showHelpMessage = () => {
   const describe = (o: Script) => `${o.name}: ${o.desc}`;
   const getScriptsAndOpts: (scripts: Script[]) => string = compose(
     join('\n'),
@@ -46,11 +67,11 @@ Options:
   All options depend on the script. The args you pass will be forwarded to the respective tool that's being run under the hood.
   `.trim();
 
-  console.log(`\n${fullMessage}\n`);
+  info(`\n${fullMessage}\n`);
 };
 
 if (script) {
   runScript();
 } else {
-  showErrorMessage();
+  showHelpMessage();
 }

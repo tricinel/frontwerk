@@ -2,6 +2,8 @@
 
 exports[`test calls jest CLI with default args 1`] = `--config {"builtInConfig":true} --watch`;
 
+exports[`test does not run watch when not in git repo 1`] = `--config {"builtInConfig":true} --watch`;
+
 exports[`test does not use built-in config with --config 1`] = `--watch --config ./custom-config.js`;
 
 exports[`test does not use built-in config with jest pkg prop 1`] = `--watch`;

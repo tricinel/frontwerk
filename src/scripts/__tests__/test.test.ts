@@ -42,13 +42,35 @@ const testCases = [
   {
     name: 'forwards args',
     args: ['--coverage', '--watch']
+  },
+  {
+    name: 'does not run watch when not in git repo',
+    args: ['--watch'],
+    withGit: false
   }
 ];
 
-const testFn = ({ hasPkgProp = () => false, args = [] }) => {
-  const { run: jestRunMock } = require('jest'); // eslint-disable-line jest/no-jest-import
-  const originalExit = jest.spyOn(process, 'exit');
+interface TestFn {
+  withGit?: boolean;
+  hasPkgProp?: () => boolean;
+  args?: string[];
+}
+
+const testFn = ({
+  withGit = true,
+  hasPkgProp = () => false,
+  args = []
+}: TestFn) => {
   const { argv: originalArgv } = process;
+  const { run: jestRunMock } = require('jest'); // eslint-disable-line jest/no-jest-import
+  const exitSpy = jest.spyOn(process, 'exit');
+  const childProcess = require('child_process');
+  const execSyncSpy = jest
+    .spyOn(childProcess, 'execSync')
+    .mockImplementation(() => (withGit ? true : null));
+  const consola = require('consola');
+  const logInfoSpy = jest.spyOn(consola, 'info').mockImplementation(() => {});
+  const logWarnSpy = jest.spyOn(consola, 'warn').mockImplementation(() => {});
 
   Object.assign(require('../../utils/pkg'), { hasPkgProp });
 
@@ -63,9 +85,17 @@ const testFn = ({ hasPkgProp = () => false, args = [] }) => {
     const [firstCall] = jestRunMock.mock.calls;
     const [jestArgs] = firstCall;
     expect(jestArgs.join(' ')).toMatchSnapshot();
+
+    if (!withGit && args.includes('--watch')) {
+      expect(logInfoSpy).toHaveBeenCalledTimes(1);
+      expect(logWarnSpy).toHaveBeenCalledTimes(1);
+    }
   } finally {
     // We reset everything afterEach
-    originalExit.mockRestore();
+    exitSpy.mockRestore();
+    execSyncSpy.mockRestore();
+    logInfoSpy.mockRestore();
+    logWarnSpy.mockRestore();
     process.argv = originalArgv;
     jest.resetModules();
   }

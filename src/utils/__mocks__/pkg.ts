@@ -1,5 +1,10 @@
-const pkgMock = {
-  pkgPath: 'path/to/package/package.json'
+const pkg = {
+  name: 'app',
+  dependencies: {},
+  peerDependencies: {},
+  devDependencies: {}
 };
 
-export default pkgMock;
+const pkgPath = 'path/to/package/package.json';
+
+export { pkg, pkgPath, pkg as ownPkg, pkgPath as ownPkgPath };

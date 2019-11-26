@@ -8,6 +8,6 @@ beforeAll(() => {
 });
 
 test('Parses the env name, returning that or a default', () => {
-  expect(parseEnv('BUILD_MINIFY')).toBeTruthy();
-  expect(parseEnv('NOT_SET', 'development')).toEqual('development');
+  expect(parseEnv<boolean>('BUILD_MINIFY', false)).toBeTruthy();
+  expect(parseEnv<string>('NOT_SET', 'development')).toEqual('development');
 });

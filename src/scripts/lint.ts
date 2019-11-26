@@ -1,11 +1,12 @@
 import spawn from 'cross-spawn';
 import yargsParser from 'yargs-parser';
 
+import safeExit from '../utils/proc';
 import { hasPkgProp } from '../utils/pkg';
 import getConfig from '../utils/getConfig';
 import resolveBin from '../utils/resolveBin';
 import fileExists from '../utils/fileExists';
-import { warning, info, start } from '../utils/logger';
+import { start } from '../utils/logger';
 import { useBuiltinConfig, whichConfig } from '../utils/whichConfig';
 
 let args = process.argv.slice(2);
@@ -47,25 +48,10 @@ if (filesGiven) {
 
 start(whichConfig('eslint'));
 
-// The eslintignore file is coincidentally ignored, so until this issue is resolved
-// we need to make sure the user is not accidentally linting his node_modules
-// https://github.com/eslint/eslint/issues/9227
-let result;
+const result = spawn.sync(
+  resolveBin('eslint'),
+  [...config, ...ignore, ...cache, ...args, ...filesToApply],
+  { stdio: 'inherit' }
+);
 
-if (useBuiltinIgnore) {
-  warning('Please pass an eslintignore!');
-  info(
-    'Currently, eslint has issues with reading relative paths.',
-    'Until it is resolved, please pass your eslintignore!',
-    'See https://github.com/eslint/eslint/issues/9227'
-  );
-  result = { status: 1 };
-} else {
-  result = spawn.sync(
-    resolveBin('eslint'),
-    [...config, ...ignore, ...cache, ...args, ...filesToApply],
-    { stdio: 'inherit' }
-  );
-}
-
-process.exit(result.status);
+safeExit(result.status);

@@ -2,25 +2,33 @@ import fs from 'fs';
 import path from 'path';
 
 import {
-  compose,
-  concat,
+  pipe,
+  union,
   indexOf,
   keys,
-  merge,
-  reduce,
   uniq,
-  allPass,
-  anyPass
+  flatten,
+  map,
+  reduce,
+  pick,
+  values
 } from 'ramda';
 
 import appDirectory from './appDirectory';
 import { pkg } from './pkg';
+import { allTrue, anyTrue } from './logic';
 
+// Figure out if the dependency is declared in package.json
+// And if it is present in the node_modules folder
 const hasDep = (dep: string): boolean => {
-  const declaredDeps = compose(
-    keys,
-    merge
-  )(pkg.dependencies, pkg.devDependencies, pkg.peerDependencies);
+  // All the declared dependencies inside of package.json
+  const declaredDeps = pipe(
+    pick(['dependencies', 'devDependencies', 'peerDependencies']),
+    values,
+    map(keys),
+    flatten,
+    uniq
+  )(pkg);
 
   const getDirectories = (srcpath: string): string[] =>
     fs
@@ -37,17 +45,14 @@ const hasDep = (dep: string): boolean => {
 
   const directories = getDirectories(`${appDirectory}/node_modules/`);
   const availableDeps = reduce(createDirectories, [], directories);
-  const deps = compose(
-    uniq,
-    concat
-  )(availableDeps, declaredDeps);
+  const deps = union(availableDeps, declaredDeps);
 
   return indexOf(dep, deps) !== -1;
 };
 
 const hasAllDeps = <T>(deps: string[], lhs: T, rhs = false): T | boolean =>
-  (allPass(deps.map(hasDep)) as boolean) ? lhs : rhs;
+  allTrue(deps.map(hasDep)) ? lhs : rhs;
 const hasAnyDeps = <T>(deps: string[], lhs: T, rhs = false): T | boolean =>
-  (anyPass(deps.map(hasDep)) as boolean) ? lhs : rhs;
+  anyTrue(deps.map(hasDep)) ? lhs : rhs;
 
 export { hasDep, hasAllDeps, hasAnyDeps };
