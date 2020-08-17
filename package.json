@@ -74,7 +74,7 @@
   "dependencies": {
     "autoprefixer": "^8.5.1",
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^9.0.0",
     "babel-jest": "^23.0.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -110,7 +110,7 @@
     "html-webpack-plugin": "^3.2.0",
     "inquirer": "^5.2.0",
     "jest": "^23.0.0",
-    "jest-watch-typeahead": "^0.1.0",
+    "jest-watch-typeahead": "^0.2.0",
     "mini-css-extract-plugin": "^0.4.0",
     "mkdirp": "^0.5.1",
     "npm-run-all": "^4.1.3",
